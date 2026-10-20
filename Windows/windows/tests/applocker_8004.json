@@ -1,0 +1,73 @@
+{
+  "input": {
+    "message": "{\"EventTime\": \"2024-10-02 11:15:42\", \"Hostname\": \"example.com\", \"Keywords\": -9223372036854775808, \"EventType\": \"INFO\", \"SeverityValue\": 2, \"Severity\": \"INFO\", \"EventID\": 8004, \"SourceName\": \"Microsoft-Windows-AppLocker\", \"ProviderGuid\": \"{CBDA4DBF-8D5D-4F69-9578-BE14AA540D22}\", \"Version\": 0, \"Task\": 0, \"OpcodeValue\": 0, \"RecordNumber\": 1812530, \"ProcessID\": 2476, \"ThreadID\": 2720, \"Channel\": \"Microsoft-Windows-AppLocker/EXE and DLL\", \"Domain\": \"example.com\", \"AccountName\": \"user1\", \"UserID\": \"user1\", \"AccountType\": \"User\", \"Message\": \"%PROGRAMFILES%\\\\UNTRUSTED\\\\malware.exe was prevented from running.\", \"Opcode\": \"Info\", \"EventReceivedTime\": \"2024-10-02 11:15:43\", \"SourceModuleName\": \"eventlog\", \"SourceModuleType\": \"im_msvistalog\"}",
+    "sekoiaio": {
+      "intake": {
+        "dialect": "Windows",
+        "dialect_uuid": "9281438c-f7c3-4001-9bcc-45fd108ba1be"
+      }
+    }
+  },
+  "expected": {
+    "message": "{\"EventTime\": \"2024-10-02 11:15:42\", \"Hostname\": \"example.com\", \"Keywords\": -9223372036854775808, \"EventType\": \"INFO\", \"SeverityValue\": 2, \"Severity\": \"INFO\", \"EventID\": 8004, \"SourceName\": \"Microsoft-Windows-AppLocker\", \"ProviderGuid\": \"{CBDA4DBF-8D5D-4F69-9578-BE14AA540D22}\", \"Version\": 0, \"Task\": 0, \"OpcodeValue\": 0, \"RecordNumber\": 1812530, \"ProcessID\": 2476, \"ThreadID\": 2720, \"Channel\": \"Microsoft-Windows-AppLocker/EXE and DLL\", \"Domain\": \"example.com\", \"AccountName\": \"user1\", \"UserID\": \"user1\", \"AccountType\": \"User\", \"Message\": \"%PROGRAMFILES%\\\\UNTRUSTED\\\\malware.exe was prevented from running.\", \"Opcode\": \"Info\", \"EventReceivedTime\": \"2024-10-02 11:15:43\", \"SourceModuleName\": \"eventlog\", \"SourceModuleType\": \"im_msvistalog\"}",
+    "event": {
+      "code": "8004",
+      "message": "%PROGRAMFILES%\\UNTRUSTED\\malware.exe was prevented from running.",
+      "provider": "Microsoft-Windows-AppLocker"
+    },
+    "action": {
+      "id": 8004,
+      "name": "Application blocked by AppLocker",
+      "properties": {
+        "AccountName": "user1",
+        "AccountType": "User",
+        "Domain": "example.com",
+        "EventType": "INFO",
+        "Keywords": "-9223372036854775808",
+        "OpcodeValue": 0,
+        "ProviderGuid": "{CBDA4DBF-8D5D-4F69-9578-BE14AA540D22}",
+        "Severity": "INFO",
+        "SourceName": "Microsoft-Windows-AppLocker",
+        "Task": 0
+      },
+      "record_id": 1812530,
+      "type": "Microsoft-Windows-AppLocker/EXE and DLL"
+    },
+    "file": {
+      "name": "malware.exe",
+      "path": "%PROGRAMFILES%\\UNTRUSTED\\malware.exe"
+    },
+    "host": {
+      "hostname": "example",
+      "name": "example.com"
+    },
+    "log": {
+      "hostname": "example.com",
+      "level": "info"
+    },
+    "os": {
+      "family": "windows",
+      "platform": "windows"
+    },
+    "process": {
+      "id": 2476,
+      "pid": 2476,
+      "thread": {
+        "id": 2720
+      }
+    },
+    "related": {
+      "hosts": [
+        "example"
+      ],
+      "user": [
+        "user1"
+      ]
+    },
+    "user": {
+      "domain": "example.com",
+      "id": "user1",
+      "name": "user1"
+    }
+  }
+}

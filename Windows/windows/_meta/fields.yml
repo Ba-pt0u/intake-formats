@@ -23,9 +23,21 @@ action.properties.Accesses:
   name: action.properties.Accesses
   type: keyword
 
+action.properties.AccountAvailableKeys:
+  description: Keys available for the account requesting a Kerberos service ticket
+    (event 4769)
+  name: action.properties.AccountAvailableKeys
+  type: keyword
+
 action.properties.AccountName:
   description: ''
   name: action.properties.AccountName
+  type: keyword
+
+action.properties.AccountSupportedEncryptionTypes:
+  description: Encryption types supported by the account requesting a Kerberos service
+    ticket (msDS-SupportedEncryptionTypes, event 4769)
+  name: action.properties.AccountSupportedEncryptionTypes
   type: keyword
 
 action.properties.AccountType:
@@ -198,6 +210,12 @@ action.properties.ClientAddress:
   name: action.properties.ClientAddress
   type: keyword
 
+action.properties.ClientAdvertizedEncryptionTypes:
+  description: Encryption types advertised by the client in a Kerberos service ticket
+    request (event 4769)
+  name: action.properties.ClientAdvertizedEncryptionTypes
+  type: keyword
+
 action.properties.ClientIPAddress:
   description: ''
   name: action.properties.ClientIPAddress
@@ -233,9 +251,21 @@ action.properties.ContextInfo:
   name: action.properties.ContextInfo
   type: keyword
 
+action.properties.DCAvailableKeys:
+  description: Keys available on the domain controller for a Kerberos service ticket
+    request (event 4769)
+  name: action.properties.DCAvailableKeys
+  type: keyword
+
 action.properties.DCName:
   description: ''
   name: action.properties.DCName
+  type: keyword
+
+action.properties.DCSupportedEncryptionTypes:
+  description: Encryption types supported by the domain controller for a Kerberos
+    service ticket request (event 4769)
+  name: action.properties.DCSupportedEncryptionTypes
   type: keyword
 
 action.properties.Description:
@@ -854,6 +884,12 @@ action.properties.RelaxMinimumPasswordLengthLimits:
   name: action.properties.RelaxMinimumPasswordLengthLimits
   type: keyword
 
+action.properties.RequestTicketHash:
+  description: Hash of the Kerberos ticket sent in the service ticket request (event
+    4769)
+  name: action.properties.RequestTicketHash
+  type: keyword
+
 action.properties.Requester:
   description: ''
   name: action.properties.Requester
@@ -867,6 +903,12 @@ action.properties.ResetCount:
 action.properties.ResetReason:
   description: ''
   name: action.properties.ResetReason
+  type: keyword
+
+action.properties.ResponseTicketHash:
+  description: Hash of the Kerberos service ticket issued by the domain controller
+    (event 4769)
+  name: action.properties.ResponseTicketHash
   type: keyword
 
 action.properties.ReturnCode:
@@ -919,6 +961,11 @@ action.properties.ServiceAccount:
   name: action.properties.ServiceAccount
   type: keyword
 
+action.properties.ServiceAvailableKeys:
+  description: Keys available for the requested service account (event 4769)
+  name: action.properties.ServiceAvailableKeys
+  type: keyword
+
 action.properties.ServiceFileName:
   description: ''
   name: action.properties.ServiceFileName
@@ -949,6 +996,12 @@ action.properties.ServiceStartType:
   name: action.properties.ServiceStartType
   type: keyword
 
+action.properties.ServiceSupportedEncryptionTypes:
+  description: Encryption types supported by the requested service account (event
+    4769)
+  name: action.properties.ServiceSupportedEncryptionTypes
+  type: keyword
+
 action.properties.ServiceType:
   description: ''
   name: action.properties.ServiceType
@@ -957,6 +1010,12 @@ action.properties.ServiceType:
 action.properties.SessionID:
   description: ''
   name: action.properties.SessionID
+  type: keyword
+
+action.properties.SessionKeyEncryptionType:
+  description: Encryption type of the session key of the Kerberos service ticket (event
+    4769)
+  name: action.properties.SessionKeyEncryptionType
   type: keyword
 
 action.properties.Severity:

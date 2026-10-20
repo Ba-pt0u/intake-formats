@@ -312,7 +312,7 @@ stages:
       - set:
           file.name: '{{json.event.Message.split(" ")[0].split("\\")[-1]}}'
           file.path: "{{json.event.Message.split(' ')[0]}}"
-        filter: "{{json.event.EventID in (8002, 8005)}}"
+        filter: "{{json.event.EventID in (8002, 8003, 8004, 8005, 8006, 8007)}}"
 
   set_event_2946:
     actions:
@@ -800,6 +800,7 @@ stages:
           1108: The event logging service encountered an error
           1116: The antimalware platform detected malware or other potentially unwanted software.
           1120: Microsoft Defender Antivirus deduced the hashes for a threat resource.
+          1151: Microsoft Defender Antivirus client health report
           4104: Creating Scriptblock text
           4608: Windows is starting up
           4609: Windows is shutting down
@@ -1057,6 +1058,7 @@ stages:
           4983: An IPsec Extended Mode negotiation failed
           4984: An IPsec Extended Mode negotiation failed
           4985: The state of a transaction has changed
+          5007: Microsoft Defender Antivirus configuration has changed
           5024: The Windows Firewall Service has started successfully
           5025: The Windows Firewall Service has been stopped
           5027: The Windows Firewall Service was unable to retrieve the security policy from the local storage
@@ -1224,6 +1226,24 @@ stages:
         mapping:
           final.event.code: action.name
         filter: "{{json.event.Channel in ['Application', 'System', 'Security', 'Microsoft-Windows-PowerShell/Operational', 'Microsoft-Windows-Windows Defender/Operational']}}"
+
+      - translate:
+        dictionary:
+          8002: Application allowed by AppLocker
+          8003: Application allowed by AppLocker but would have been blocked if the policy was enforced
+          8004: Application blocked by AppLocker
+          8005: Script or MSI allowed by AppLocker
+          8006: Script or MSI allowed by AppLocker but would have been blocked if the policy was enforced
+          8007: Script or MSI blocked by AppLocker
+          8020: Packaged app allowed by AppLocker
+          8021: Packaged app allowed by AppLocker but would have been blocked if the policy was enforced
+          8022: Packaged app blocked by AppLocker
+          8023: Packaged app installation allowed by AppLocker
+          8024: Packaged app installation allowed by AppLocker but would have been blocked if the policy was enforced
+          8025: Packaged app installation blocked by AppLocker
+        mapping:
+          final.event.code: action.name
+        filter: "{{json.event.Channel != null and json.event.Channel.startswith('Microsoft-Windows-AppLocker/')}}"
 
   process_parent_executable:
     actions:

@@ -17,6 +17,7 @@
     },
     "action": {
       "id": 8005,
+      "name": "Script or MSI allowed by AppLocker",
       "properties": {
         "AccountName": "user1",
         "AccountType": "User",

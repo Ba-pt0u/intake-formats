@@ -11,6 +11,7 @@
     },
     "action": {
       "id": 1151,
+      "name": "Microsoft Defender Antivirus client health report",
       "properties": {
         "AccountName": "user1",
         "AccountType": "User",

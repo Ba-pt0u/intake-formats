@@ -17,6 +17,7 @@
     },
     "action": {
       "id": 8002,
+      "name": "Application allowed by AppLocker",
       "properties": {
         "AccountName": "SYSTEM",
         "AccountType": "User",

@@ -11,6 +11,7 @@
     },
     "action": {
       "id": 5007,
+      "name": "Microsoft Defender Antivirus configuration has changed",
       "properties": {
         "AccountName": "SYSTEM",
         "AccountType": "User",
