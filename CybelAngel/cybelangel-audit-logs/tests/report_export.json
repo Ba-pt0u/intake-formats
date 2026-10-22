@@ -1,0 +1,58 @@
+{
+  "input": {
+    "message": "{\"event_id\":\"22222222-2222-2222-2222-222222222222\",\"organization_id\":\"org-12345678\",\"author_id\":\"user1\",\"author_email\":\"john.doe@example.com\",\"report\":{\"incident_id\":\"EXAMPLE-0001\",\"incident_type\":\"credentials\",\"severity\":3,\"status\":\"open\"},\"keyword\":null,\"user\":null,\"updated_fields\":null,\"action\":\"export\",\"event_date\":\"2026-10-22T08:05:12.456Z\",\"object_type\":\"report\",\"object_id\":\"33333333-3333-3333-3333-333333333333\"}",
+    "sekoiaio": {
+      "intake": {
+        "dialect": "CybelAngel Audit Logs",
+        "dialect_uuid": "d681c5ba-63bf-4fcf-8b54-cf2d31ee5b89"
+      }
+    }
+  },
+  "expected": {
+    "message": "{\"event_id\":\"22222222-2222-2222-2222-222222222222\",\"organization_id\":\"org-12345678\",\"author_id\":\"user1\",\"author_email\":\"john.doe@example.com\",\"report\":{\"incident_id\":\"EXAMPLE-0001\",\"incident_type\":\"credentials\",\"severity\":3,\"status\":\"open\"},\"keyword\":null,\"user\":null,\"updated_fields\":null,\"action\":\"export\",\"event_date\":\"2026-10-22T08:05:12.456Z\",\"object_type\":\"report\",\"object_id\":\"33333333-3333-3333-3333-333333333333\"}",
+    "event": {
+      "action": "export",
+      "category": [
+        "web"
+      ],
+      "dataset": "audit_logs",
+      "kind": "event",
+      "outcome": "success",
+      "type": [
+        "access"
+      ]
+    },
+    "@timestamp": "2026-10-22T08:05:12.456000Z",
+    "cybelangel": {
+      "audit": {
+        "event_id": "22222222-2222-2222-2222-222222222222",
+        "object": {
+          "id": "33333333-3333-3333-3333-333333333333",
+          "type": "report"
+        }
+      },
+      "report": {
+        "incident_id": "EXAMPLE-0001",
+        "incident_type": "credentials",
+        "severity": 3,
+        "status": "open"
+      }
+    },
+    "observer": {
+      "product": "CybelAngel Platform",
+      "vendor": "CybelAngel"
+    },
+    "organization": {
+      "id": "org-12345678"
+    },
+    "related": {
+      "user": [
+        "john.doe@example.com"
+      ]
+    },
+    "user": {
+      "email": "john.doe@example.com",
+      "id": "user1"
+    }
+  }
+}

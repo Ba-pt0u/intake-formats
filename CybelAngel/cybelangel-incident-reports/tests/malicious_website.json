@@ -1,0 +1,68 @@
+{
+  "input": {
+    "message": "{\"id\":\"33333333-3333-3333-3333-333333333333\",\"incident_id\":\"EXAMPLE-0003\",\"url\":\"https://platform.example.com/reports/33333333-3333-3333-3333-333333333333\",\"created_at\":\"2026-10-22T07:00:00Z\",\"detected_at\":\"2026-10-22T06:30:00Z\",\"updated_at\":\"2026-10-22T07:00:00Z\",\"sent_at\":null,\"report_type\":\"incident_report\",\"status\":\"in_progress\",\"keywords\":[{\"id\":\"44444444-4444-4444-4444-444444444444\",\"name\":\"example.com\"}],\"workspaces\":[{\"id\":\"55555555-5555-5555-5555-555555555555\",\"name\":\"Default\"}],\"attachments\":[],\"screenshots\":[],\"tags\":[],\"usergroups\":[],\"title\":\"Lookalike domain example-login.com targeting example.com\",\"abstract\":\"The domain example-login.com imitates the login page of example.com.\",\"category\":\"dns\",\"incident_type\":\"malicious_website\",\"module\":\"domain_protection\",\"severity\":4,\"registrar_name\":\"Example Registrar\",\"hostnames\":[\"example-login.com\"],\"ip\":\"203.0.113.20\"}",
+    "sekoiaio": {
+      "intake": {
+        "dialect": "CybelAngel Incident Reports",
+        "dialect_uuid": "239ff8c5-797a-4030-a852-fe0e37816602"
+      }
+    }
+  },
+  "expected": {
+    "message": "{\"id\":\"33333333-3333-3333-3333-333333333333\",\"incident_id\":\"EXAMPLE-0003\",\"url\":\"https://platform.example.com/reports/33333333-3333-3333-3333-333333333333\",\"created_at\":\"2026-10-22T07:00:00Z\",\"detected_at\":\"2026-10-22T06:30:00Z\",\"updated_at\":\"2026-10-22T07:00:00Z\",\"sent_at\":null,\"report_type\":\"incident_report\",\"status\":\"in_progress\",\"keywords\":[{\"id\":\"44444444-4444-4444-4444-444444444444\",\"name\":\"example.com\"}],\"workspaces\":[{\"id\":\"55555555-5555-5555-5555-555555555555\",\"name\":\"Default\"}],\"attachments\":[],\"screenshots\":[],\"tags\":[],\"usergroups\":[],\"title\":\"Lookalike domain example-login.com targeting example.com\",\"abstract\":\"The domain example-login.com imitates the login page of example.com.\",\"category\":\"dns\",\"incident_type\":\"malicious_website\",\"module\":\"domain_protection\",\"severity\":4,\"registrar_name\":\"Example Registrar\",\"hostnames\":[\"example-login.com\"],\"ip\":\"203.0.113.20\"}",
+    "event": {
+      "action": "malicious_website",
+      "category": [
+        "intrusion_detection"
+      ],
+      "dataset": "incident_reports",
+      "kind": "alert",
+      "reason": "Lookalike domain example-login.com targeting example.com",
+      "severity": 4,
+      "type": [
+        "info"
+      ],
+      "url": "https://platform.example.com/reports/33333333-3333-3333-3333-333333333333"
+    },
+    "@timestamp": "2026-10-22T07:00:00Z",
+    "cybelangel": {
+      "report": {
+        "abstract": "The domain example-login.com imitates the login page of example.com.",
+        "category": "dns",
+        "detected_at": "2026-10-22T06:30:00Z",
+        "hostnames": [
+          "example-login.com"
+        ],
+        "id": "33333333-3333-3333-3333-333333333333",
+        "incident_id": "EXAMPLE-0003",
+        "incident_type": "malicious_website",
+        "ip": "203.0.113.20",
+        "keywords": [
+          "example.com"
+        ],
+        "module": "domain_protection",
+        "registrar_name": "Example Registrar",
+        "report_type": "incident_report",
+        "severity": 4,
+        "status": "in_progress",
+        "tags": [],
+        "updated_at": "2026-10-22T07:00:00Z",
+        "workspaces": [
+          "Default"
+        ]
+      }
+    },
+    "observer": {
+      "product": "CybelAngel Platform",
+      "vendor": "CybelAngel"
+    },
+    "related": {
+      "hosts": [
+        "example-login.com"
+      ],
+      "ip": [
+        "203.0.113.20"
+      ]
+    }
+  }
+}

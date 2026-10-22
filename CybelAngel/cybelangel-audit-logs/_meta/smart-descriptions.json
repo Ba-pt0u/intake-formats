@@ -1,0 +1,220 @@
+[
+  {
+    "value": "{user.email} logged in to CybelAngel",
+    "conditions": [
+      {
+        "field": "user.email"
+      },
+      {
+        "field": "event.action",
+        "value": "login"
+      }
+    ]
+  },
+  {
+    "value": "{user.email} logged out of CybelAngel",
+    "conditions": [
+      {
+        "field": "user.email"
+      },
+      {
+        "field": "event.action",
+        "value": "logout"
+      }
+    ]
+  },
+  {
+    "value": "{user.email} changed the password of {user.target.email}",
+    "conditions": [
+      {
+        "field": "user.email"
+      },
+      {
+        "field": "user.target.email"
+      },
+      {
+        "field": "event.action",
+        "value": "change_password"
+      }
+    ]
+  },
+  {
+    "value": "{user.email} viewed report {cybelangel.report.incident_id}",
+    "conditions": [
+      {
+        "field": "user.email"
+      },
+      {
+        "field": "cybelangel.report.incident_id"
+      },
+      {
+        "field": "event.action",
+        "value": "view"
+      }
+    ]
+  },
+  {
+    "value": "{user.email} exported report {cybelangel.report.incident_id}",
+    "conditions": [
+      {
+        "field": "user.email"
+      },
+      {
+        "field": "cybelangel.report.incident_id"
+      },
+      {
+        "field": "event.action",
+        "value": "export"
+      }
+    ]
+  },
+  {
+    "value": "{user.email} shared report {cybelangel.report.incident_id} externally",
+    "conditions": [
+      {
+        "field": "user.email"
+      },
+      {
+        "field": "cybelangel.report.incident_id"
+      },
+      {
+        "field": "event.action",
+        "value": "share_externally"
+      }
+    ]
+  },
+  {
+    "value": "{user.email} commented report {cybelangel.report.incident_id}",
+    "conditions": [
+      {
+        "field": "user.email"
+      },
+      {
+        "field": "cybelangel.report.incident_id"
+      },
+      {
+        "field": "event.action",
+        "value": "add_comment"
+      }
+    ]
+  },
+  {
+    "value": "{user.email} requested the takedown of report {cybelangel.report.incident_id}",
+    "conditions": [
+      {
+        "field": "user.email"
+      },
+      {
+        "field": "cybelangel.report.incident_id"
+      },
+      {
+        "field": "event.action",
+        "value": "request_takedown"
+      }
+    ]
+  },
+  {
+    "value": "{user.email} updated report {cybelangel.report.incident_id} (status: {cybelangel.report.status})",
+    "conditions": [
+      {
+        "field": "user.email"
+      },
+      {
+        "field": "cybelangel.report.incident_id"
+      },
+      {
+        "field": "cybelangel.report.status"
+      },
+      {
+        "field": "event.action",
+        "value": "update"
+      }
+    ]
+  },
+  {
+    "value": "{user.email} created user {user.target.email}",
+    "conditions": [
+      {
+        "field": "user.email"
+      },
+      {
+        "field": "user.target.email"
+      },
+      {
+        "field": "cybelangel.audit.object.type",
+        "value": "user"
+      },
+      {
+        "field": "event.action",
+        "value": "create"
+      }
+    ]
+  },
+  {
+    "value": "{user.email} updated user {user.target.email}",
+    "conditions": [
+      {
+        "field": "user.email"
+      },
+      {
+        "field": "user.target.email"
+      },
+      {
+        "field": "cybelangel.audit.object.type",
+        "value": "user"
+      },
+      {
+        "field": "event.action",
+        "value": "update"
+      }
+    ]
+  },
+  {
+    "value": "{user.email} deleted user {user.target.email}",
+    "conditions": [
+      {
+        "field": "user.email"
+      },
+      {
+        "field": "user.target.email"
+      },
+      {
+        "field": "cybelangel.audit.object.type",
+        "value": "user"
+      },
+      {
+        "field": "event.action",
+        "value": "delete"
+      }
+    ]
+  },
+  {
+    "value": "{user.email} performed {event.action} on keyword {cybelangel.keyword.name}",
+    "conditions": [
+      {
+        "field": "user.email"
+      },
+      {
+        "field": "event.action"
+      },
+      {
+        "field": "cybelangel.keyword.name"
+      },
+      {
+        "field": "cybelangel.audit.object.type",
+        "value": "keyword"
+      }
+    ]
+  },
+  {
+    "value": "{user.email} performed {event.action} on {cybelangel.audit.object.type} {cybelangel.audit.object.id}",
+    "conditions": [
+      {
+        "field": "user.email"
+      },
+      {
+        "field": "event.action"
+      }
+    ]
+  }
+]

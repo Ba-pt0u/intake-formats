@@ -1,0 +1,60 @@
+{
+  "input": {
+    "message": "{\"event_id\":\"22222225-2222-2222-2222-222222222222\",\"organization_id\":\"org-12345678\",\"author_id\":\"user1\",\"author_email\":\"john.doe@example.com\",\"report\":null,\"keyword\":{\"name\":\"example.com\",\"status\":\"active\",\"type\":\"domain\"},\"user\":null,\"updated_fields\":[\"status\"],\"action\":\"update\",\"event_date\":\"2026-10-22T09:00:00.000Z\",\"object_type\":\"keyword\",\"object_id\":\"44444444-4444-4444-4444-444444444444\"}",
+    "sekoiaio": {
+      "intake": {
+        "dialect": "CybelAngel Audit Logs",
+        "dialect_uuid": "d681c5ba-63bf-4fcf-8b54-cf2d31ee5b89"
+      }
+    }
+  },
+  "expected": {
+    "message": "{\"event_id\":\"22222225-2222-2222-2222-222222222222\",\"organization_id\":\"org-12345678\",\"author_id\":\"user1\",\"author_email\":\"john.doe@example.com\",\"report\":null,\"keyword\":{\"name\":\"example.com\",\"status\":\"active\",\"type\":\"domain\"},\"user\":null,\"updated_fields\":[\"status\"],\"action\":\"update\",\"event_date\":\"2026-10-22T09:00:00.000Z\",\"object_type\":\"keyword\",\"object_id\":\"44444444-4444-4444-4444-444444444444\"}",
+    "event": {
+      "action": "update",
+      "category": [
+        "configuration"
+      ],
+      "dataset": "audit_logs",
+      "kind": "event",
+      "outcome": "success",
+      "type": [
+        "change"
+      ]
+    },
+    "@timestamp": "2026-10-22T09:00:00Z",
+    "cybelangel": {
+      "audit": {
+        "event_id": "22222225-2222-2222-2222-222222222222",
+        "object": {
+          "id": "44444444-4444-4444-4444-444444444444",
+          "type": "keyword"
+        },
+        "updated_fields": [
+          "status"
+        ]
+      },
+      "keyword": {
+        "name": "example.com",
+        "status": "active",
+        "type": "domain"
+      }
+    },
+    "observer": {
+      "product": "CybelAngel Platform",
+      "vendor": "CybelAngel"
+    },
+    "organization": {
+      "id": "org-12345678"
+    },
+    "related": {
+      "user": [
+        "john.doe@example.com"
+      ]
+    },
+    "user": {
+      "email": "john.doe@example.com",
+      "id": "user1"
+    }
+  }
+}

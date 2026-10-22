@@ -1,0 +1,56 @@
+{
+  "input": {
+    "message": "{\"event_id\":\"22222221-2222-2222-2222-222222222222\",\"organization_id\":\"org-12345678\",\"author_id\":\"user1\",\"author_email\":\"john.doe@example.com\",\"report\":null,\"keyword\":null,\"user\":{\"email\":\"john.doe@example.com\"},\"updated_fields\":null,\"action\":\"login\",\"event_date\":\"2026-10-22T08:00:00.123Z\",\"object_type\":\"user\",\"object_id\":\"user1\"}",
+    "sekoiaio": {
+      "intake": {
+        "dialect": "CybelAngel Audit Logs",
+        "dialect_uuid": "d681c5ba-63bf-4fcf-8b54-cf2d31ee5b89"
+      }
+    }
+  },
+  "expected": {
+    "message": "{\"event_id\":\"22222221-2222-2222-2222-222222222222\",\"organization_id\":\"org-12345678\",\"author_id\":\"user1\",\"author_email\":\"john.doe@example.com\",\"report\":null,\"keyword\":null,\"user\":{\"email\":\"john.doe@example.com\"},\"updated_fields\":null,\"action\":\"login\",\"event_date\":\"2026-10-22T08:00:00.123Z\",\"object_type\":\"user\",\"object_id\":\"user1\"}",
+    "event": {
+      "action": "login",
+      "category": [
+        "authentication"
+      ],
+      "dataset": "audit_logs",
+      "kind": "event",
+      "outcome": "success",
+      "type": [
+        "start"
+      ]
+    },
+    "@timestamp": "2026-10-22T08:00:00.123000Z",
+    "cybelangel": {
+      "audit": {
+        "event_id": "22222221-2222-2222-2222-222222222222",
+        "object": {
+          "id": "user1",
+          "type": "user"
+        }
+      }
+    },
+    "observer": {
+      "product": "CybelAngel Platform",
+      "vendor": "CybelAngel"
+    },
+    "organization": {
+      "id": "org-12345678"
+    },
+    "related": {
+      "user": [
+        "john.doe@example.com"
+      ]
+    },
+    "user": {
+      "email": "john.doe@example.com",
+      "id": "user1",
+      "target": {
+        "email": "john.doe@example.com",
+        "id": "user1"
+      }
+    }
+  }
+}

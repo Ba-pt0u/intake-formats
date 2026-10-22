@@ -1,0 +1,97 @@
+cybelangel.report.abstract:
+  description: Summary of the incident
+  name: cybelangel.report.abstract
+  type: text
+
+cybelangel.report.category:
+  description: Category of the source of the incident (e.g. paste, leak, database,
+    dns)
+  name: cybelangel.report.category
+  type: keyword
+
+cybelangel.report.detected_at:
+  description: Date of the detection of the incident
+  name: cybelangel.report.detected_at
+  type: date
+
+cybelangel.report.hostnames:
+  description: Hostnames related to the incident
+  name: cybelangel.report.hostnames
+  type: array
+
+cybelangel.report.id:
+  description: Unique identifier of the report
+  name: cybelangel.report.id
+  type: keyword
+
+cybelangel.report.incident_id:
+  description: Incident identifier of the report, unique within the organization
+  name: cybelangel.report.incident_id
+  type: keyword
+
+cybelangel.report.incident_type:
+  description: Type of the incident (e.g. credentials, exposed_service, malicious_website)
+  name: cybelangel.report.incident_type
+  type: keyword
+
+cybelangel.report.ip:
+  description: IP address related to the incident
+  name: cybelangel.report.ip
+  type: keyword
+
+cybelangel.report.keywords:
+  description: Names of the monitored keywords that matched the incident
+  name: cybelangel.report.keywords
+  type: array
+
+cybelangel.report.module:
+  description: CybelAngel module that detected the incident (e.g. data_breach_prevention,
+    domain_protection)
+  name: cybelangel.report.module
+  type: keyword
+
+cybelangel.report.port:
+  description: Port related to the incident
+  name: cybelangel.report.port
+  type: long
+
+cybelangel.report.registrar_name:
+  description: Registrar of the domain related to the incident
+  name: cybelangel.report.registrar_name
+  type: keyword
+
+cybelangel.report.report_type:
+  description: Type of the report (incident_report, incident_detection, preliminary_report,
+    reminder, communication)
+  name: cybelangel.report.report_type
+  type: keyword
+
+cybelangel.report.severity:
+  description: Severity of the report, from 0 (low) to 4 (high)
+  name: cybelangel.report.severity
+  type: long
+
+cybelangel.report.status:
+  description: Status of the report (draft, open, in_progress, resolved, discarded)
+  name: cybelangel.report.status
+  type: keyword
+
+cybelangel.report.tags:
+  description: Tags of the report
+  name: cybelangel.report.tags
+  type: array
+
+cybelangel.report.threat:
+  description: Threat related to the incident
+  name: cybelangel.report.threat
+  type: keyword
+
+cybelangel.report.updated_at:
+  description: Date of the last update of the report
+  name: cybelangel.report.updated_at
+  type: date
+
+cybelangel.report.workspaces:
+  description: Names of the CybelAngel workspaces of the report
+  name: cybelangel.report.workspaces
+  type: array

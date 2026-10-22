@@ -1,0 +1,12 @@
+uuid: d681c5ba-63bf-4fcf-8b54-cf2d31ee5b89
+name: CybelAngel Audit Logs
+slug: cybelangel-audit-logs
+automation_module_uuid: 1fae58fb-9b5d-4ab5-ab9a-7bc26fd31fbb
+automation_connector_uuid: ddc44858-8e0c-513d-9d34-713c99d2bdf4
+
+description: >-
+  Audit logs of the CybelAngel platform: logins and actions of the users on the incident reports, the keywords and the users of the organization.
+
+data_sources:
+  Authentication logs: the audit logs report the logins and logouts of the users of the CybelAngel platform
+  Application logs: the audit logs report the actions of the users on the incident reports, the keywords and the users

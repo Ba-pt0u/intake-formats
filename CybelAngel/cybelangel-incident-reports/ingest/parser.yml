@@ -1,0 +1,84 @@
+name: cybelangel-incident-reports
+ignored_values:
+  - ""
+pipeline:
+  - name: json_event
+    external:
+      name: json.parse-json
+      properties:
+        input_field: "{{original.message}}"
+        output_field: message
+
+  - name: parsed_date
+    external:
+      name: date.parse
+      properties:
+        input_field: "{{json_event.message.sent_at or json_event.message.created_at}}"
+        output_field: datetime
+
+  - name: set_fields
+
+stages:
+  set_fields:
+    actions:
+      - set:
+          "@timestamp": "{{parsed_date.datetime}}"
+          event.kind: "alert"
+          event.dataset: "incident_reports"
+          event.type: ["info"]
+          event.action: "{{json_event.message.incident_type}}"
+          event.severity: "{{json_event.message.severity}}"
+          event.reason: "{{json_event.message.title}}"
+          event.url: "{{json_event.message.url}}"
+          observer.vendor: "CybelAngel"
+          observer.product: "CybelAngel Platform"
+          host.name: "{{json_event.message.machine_name}}"
+          threat.software.name: "{{json_event.message.malware_name}}"
+          cybelangel.report.id: "{{json_event.message.id}}"
+          cybelangel.report.incident_id: "{{json_event.message.incident_id}}"
+          cybelangel.report.incident_type: "{{json_event.message.incident_type}}"
+          cybelangel.report.report_type: "{{json_event.message.report_type}}"
+          cybelangel.report.category: "{{json_event.message.category}}"
+          cybelangel.report.module: "{{json_event.message.module}}"
+          cybelangel.report.status: "{{json_event.message.status}}"
+          cybelangel.report.severity: "{{json_event.message.severity}}"
+          cybelangel.report.abstract: "{{json_event.message.abstract}}"
+          cybelangel.report.threat: "{{json_event.message.threat}}"
+          cybelangel.report.ip: "{{json_event.message.ip}}"
+          cybelangel.report.port: "{{json_event.message.port}}"
+          cybelangel.report.hostnames: "{{json_event.message.hostnames}}"
+          cybelangel.report.registrar_name: "{{json_event.message.registrar_name}}"
+          cybelangel.report.detected_at: "{{json_event.message.detected_at}}"
+          cybelangel.report.updated_at: "{{json_event.message.updated_at}}"
+          cybelangel.report.keywords: "{{(json_event.message.keywords or []) | map(attribute='name') | select | list}}"
+          cybelangel.report.workspaces: "{{(json_event.message.workspaces or []) | map(attribute='name') | select | list}}"
+          cybelangel.report.tags: "{{json_event.message.tags}}"
+
+      - set:
+          related.ip: ["{{json_event.message.ip}}"]
+        filter: "{{json_event.message.ip | is_ipaddress}}"
+
+      - set:
+          related.hosts: "{{json_event.message.hostnames}}"
+        filter: "{{(json_event.message.hostnames or []) | length > 0}}"
+
+      # exposed assets and vulnerabilities
+      - translate:
+        dictionary:
+          cve: ["vulnerability"]
+          vulnerability: ["vulnerability"]
+          vulnerable_technology: ["vulnerability"]
+          vulnerable_technology_to_kev: ["vulnerability"]
+          sensitive_open_ports: ["vulnerability"]
+          exposed_service: ["vulnerability"]
+          exposed_data_storage: ["vulnerability"]
+          unsecured_database: ["vulnerability"]
+          subdomain_takeover: ["vulnerability"]
+          belonging_dangling_subdomain: ["vulnerability"]
+          dangling_subdomain: ["vulnerability"]
+          tls_certificate_expired: ["vulnerability"]
+          tls_certificate_soon_expired: ["vulnerability"]
+          accessible_website_with_tls_certificate_expired: ["vulnerability"]
+        mapping:
+          json_event.message.incident_type: event.category
+        fallback: ["intrusion_detection"]
