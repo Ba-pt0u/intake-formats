@@ -1,0 +1,52 @@
+{
+  "input": {
+    "message": "{\"abstract\":\"A public repository contains source code of Example Corp.\",\"abuse_email\":\"\",\"analysis\":\"**Origin:**\\nBased on its metadata and content, the unsecured device seems to belong to a third-party supplier.\",\"asset_urls\":[],\"attachments\":[],\"board\":\"\",\"category\":\"codeshare\",\"city\":\"\",\"country_code\":\"\",\"created_at\":\"2026-10-20T09:00:00.000000\",\"detected_at\":\"2026-10-20T08:00:00+00:00\",\"domain_registered_at\":null,\"hostnames\":[],\"id\":\"33333337-3333-3333-3333-333333333333\",\"incident_id\":\"EXAMPLE-0007\",\"incident_type\":\"sensitive_code\",\"investigation_id\":\"66666666-6666-6666-6666-666666666666\",\"ip\":\"\",\"keywords\":[{\"id\":\"44444444-4444-4444-4444-444444444445\",\"name\":\"Example Corp\"}],\"liveness\":{\"online\":true,\"last_checked_at\":\"2026-09-25T13:09:15.332018+00:00\"},\"location\":\"\",\"mx_servers\":[],\"ns_servers\":[],\"origins\":[],\"port\":null,\"registrant_email\":\"\",\"registrar_name\":\"\",\"report_content\":\"### Sensitive documents\\n1 document detected on an open server.\",\"report_type\":\"incident_detection\",\"risks\":[{\"type\":\"clear_further_data_leak\",\"message\":\"If the collaboration with the source of the leak is still active, new sensitive documents may be exposed.\"}],\"samples\":[{\"type\":\"other\",\"sample\":\"<p>/EngagementDocs/Example_SOW.pdf</p>\"}],\"screenshots\":[],\"sender\":\"analyst@example.com\",\"sender_tenant_id\":\"cybelangel\",\"sent_at\":\"2026-10-20T09:15:00+00:00\",\"severity\":1,\"source\":\"Github.com\",\"status\":\"open\",\"stream\":\"77777777-7777-7777-7777-777777777777\",\"suggestions\":[{\"type\":\"other\",\"message\":\"<ul><li>Confirm the sensitivity of the detected information.</li></ul>\"}],\"tags\":[],\"threat\":null,\"title\":\"Source code exposed on a public repository\",\"updated_at\":\"2026-10-20T09:15:00.000000\",\"url\":\"https://platform.example.com/reports/33333337-3333-3333-3333-333333333333\",\"usergroups\":[\"Default\"],\"volume\":null,\"whois\":\"\",\"malware_name\":null,\"malware_location\":null,\"machine_name\":null,\"user_session\":null,\"module\":\"data_breach_prevention\",\"workspaces\":[{\"id\":\"55555555-5555-5555-5555-555555555555\",\"name\":\"Default\"}]}",
+    "sekoiaio": {
+      "intake": {
+        "dialect": "CybelAngel",
+        "dialect_uuid": "518d90b4-7d70-4abe-9d98-fd50597c0f6f"
+      }
+    }
+  },
+  "expected": {
+    "message": "{\"abstract\":\"A public repository contains source code of Example Corp.\",\"abuse_email\":\"\",\"analysis\":\"**Origin:**\\nBased on its metadata and content, the unsecured device seems to belong to a third-party supplier.\",\"asset_urls\":[],\"attachments\":[],\"board\":\"\",\"category\":\"codeshare\",\"city\":\"\",\"country_code\":\"\",\"created_at\":\"2026-10-20T09:00:00.000000\",\"detected_at\":\"2026-10-20T08:00:00+00:00\",\"domain_registered_at\":null,\"hostnames\":[],\"id\":\"33333337-3333-3333-3333-333333333333\",\"incident_id\":\"EXAMPLE-0007\",\"incident_type\":\"sensitive_code\",\"investigation_id\":\"66666666-6666-6666-6666-666666666666\",\"ip\":\"\",\"keywords\":[{\"id\":\"44444444-4444-4444-4444-444444444445\",\"name\":\"Example Corp\"}],\"liveness\":{\"online\":true,\"last_checked_at\":\"2026-09-25T13:09:15.332018+00:00\"},\"location\":\"\",\"mx_servers\":[],\"ns_servers\":[],\"origins\":[],\"port\":null,\"registrant_email\":\"\",\"registrar_name\":\"\",\"report_content\":\"### Sensitive documents\\n1 document detected on an open server.\",\"report_type\":\"incident_detection\",\"risks\":[{\"type\":\"clear_further_data_leak\",\"message\":\"If the collaboration with the source of the leak is still active, new sensitive documents may be exposed.\"}],\"samples\":[{\"type\":\"other\",\"sample\":\"<p>/EngagementDocs/Example_SOW.pdf</p>\"}],\"screenshots\":[],\"sender\":\"analyst@example.com\",\"sender_tenant_id\":\"cybelangel\",\"sent_at\":\"2026-10-20T09:15:00+00:00\",\"severity\":1,\"source\":\"Github.com\",\"status\":\"open\",\"stream\":\"77777777-7777-7777-7777-777777777777\",\"suggestions\":[{\"type\":\"other\",\"message\":\"<ul><li>Confirm the sensitivity of the detected information.</li></ul>\"}],\"tags\":[],\"threat\":null,\"title\":\"Source code exposed on a public repository\",\"updated_at\":\"2026-10-20T09:15:00.000000\",\"url\":\"https://platform.example.com/reports/33333337-3333-3333-3333-333333333333\",\"usergroups\":[\"Default\"],\"volume\":null,\"whois\":\"\",\"malware_name\":null,\"malware_location\":null,\"machine_name\":null,\"user_session\":null,\"module\":\"data_breach_prevention\",\"workspaces\":[{\"id\":\"55555555-5555-5555-5555-555555555555\",\"name\":\"Default\"}]}",
+    "event": {
+      "action": "sensitive_code",
+      "category": [
+        "intrusion_detection"
+      ],
+      "dataset": "incident_reports",
+      "kind": "alert",
+      "module": "data_breach_prevention",
+      "provider": "Github.com",
+      "reason": "Source code exposed on a public repository",
+      "severity": 1,
+      "start": "2026-10-20T08:00:00Z",
+      "type": [
+        "info"
+      ],
+      "url": "https://platform.example.com/reports/33333337-3333-3333-3333-333333333333"
+    },
+    "@timestamp": "2026-10-20T09:15:00Z",
+    "cybelangel": {
+      "report": {
+        "abstract": "A public repository contains source code of Example Corp.",
+        "id": "33333337-3333-3333-3333-333333333333",
+        "incident_id": "EXAMPLE-0007",
+        "incident_type": "sensitive_code",
+        "report_type": "incident_detection",
+        "status": "open",
+        "workspaces": [
+          "Default"
+        ]
+      }
+    },
+    "observer": {
+      "product": "CybelAngel Platform",
+      "vendor": "CybelAngel"
+    },
+    "tags": [
+      "Example Corp"
+    ]
+  }
+}

@@ -72,14 +72,21 @@ stages:
           cybelangel.report.registrar_name: "{{json_event.message.registrar_name}}"
           cybelangel.report.workspaces: "{{(json_event.message.workspaces or []) | map(attribute='name') | select | list}}"
           event.module: "{{json_event.message.module}}"
-          event.provider: "{{json_event.message.category}}"
+          event.provider: "{{json_event.message.source or json_event.message.category}}"
           event.start: "{{parsed_detection_date.datetime}}"
-          server.port: "{{json_event.message.port}}"
           tags: "{{((json_event.message.keywords or []) | map(attribute='name') | list + (json_event.message.tags or [])) | select | unique | list}}"
 
+      # infostealer leaks: the IP is the one of the infected machine
+      - set:
+          host.ip: ["{{json_event.message.ip}}"]
+          file.path: "{{json_event.message.malware_location}}"
+        filter: "{{json_event.message.incident_type == 'credentials' and json_event.message.ip | is_ipaddress}}"
+
+      # exposed assets: the IP is the one of the exposed server
       - set:
           server.ip: "{{json_event.message.ip}}"
-        filter: "{{json_event.message.ip | is_ipaddress}}"
+          server.port: "{{json_event.message.port}}"
+        filter: "{{json_event.message.incident_type != 'credentials' and json_event.message.ip | is_ipaddress}}"
 
       - set:
           server.domain: "{{json_event.message.hostnames[0]}}"

@@ -18,7 +18,7 @@
       "dataset": "incident_reports",
       "kind": "alert",
       "module": "data_breach_prevention",
-      "provider": "fileserver",
+      "provider": "HTTP",
       "reason": "Sensitive documents over HTTP",
       "severity": 1,
       "start": "2026-09-24T17:23:57Z",
