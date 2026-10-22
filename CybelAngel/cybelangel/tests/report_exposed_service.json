@@ -3,8 +3,8 @@
     "message": "{\"id\":\"33333332-3333-3333-3333-333333333333\",\"incident_id\":\"EXAMPLE-0002\",\"url\":\"https://platform.example.com/reports/33333332-3333-3333-3333-333333333333\",\"created_at\":\"2026-10-22T07:00:00Z\",\"detected_at\":\"2026-10-22T06:30:00Z\",\"updated_at\":\"2026-10-22T07:00:00Z\",\"sent_at\":\"2026-10-22T07:05:00Z\",\"report_type\":\"incident_report\",\"status\":\"open\",\"keywords\":[{\"id\":\"44444444-4444-4444-4444-444444444444\",\"name\":\"example.com\"}],\"workspaces\":[{\"id\":\"55555555-5555-5555-5555-555555555555\",\"name\":\"Default\"}],\"attachments\":[],\"screenshots\":[],\"tags\":[],\"usergroups\":[],\"title\":\"SSH service exposed on 198.51.100.10\",\"abstract\":\"An SSH service belonging to example.com is reachable from the Internet.\",\"category\":\"openserver\",\"incident_type\":\"exposed_service\",\"module\":\"asset_discovery_monitoring\",\"severity\":2,\"ip\":\"198.51.100.10\",\"port\":22,\"hostnames\":[\"vpn.example.com\"]}",
     "sekoiaio": {
       "intake": {
-        "dialect": "CybelAngel Incident Reports",
-        "dialect_uuid": "239ff8c5-797a-4030-a852-fe0e37816602"
+        "dialect": "CybelAngel",
+        "dialect_uuid": "518d90b4-7d70-4abe-9d98-fd50597c0f6f"
       }
     }
   },

@@ -1,0 +1,12 @@
+uuid: 518d90b4-7d70-4abe-9d98-fd50597c0f6f
+name: CybelAngel
+slug: cybelangel
+automation_module_uuid: 1fae58fb-9b5d-4ab5-ab9a-7bc26fd31fbb
+automation_connector_uuid: a2020ae0-990f-551a-92fb-55cbe85950ca
+
+description: >-
+  Events of the CybelAngel External Risk Protection platform: the incident reports sent by CybelAngel (leaked credentials and documents, exposed services and databases, malicious websites...) and the audit logs of the platform (logins and actions of the users on the reports, the keywords and the users).
+
+data_sources:
+  Application logs: the incident reports describe the external threats detected by CybelAngel, and the audit logs report the actions of the users on the platform
+  Authentication logs: the audit logs report the logins and logouts of the users of the CybelAngel platform

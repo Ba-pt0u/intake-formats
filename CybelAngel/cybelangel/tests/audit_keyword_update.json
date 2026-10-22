@@ -3,8 +3,8 @@
     "message": "{\"event_id\":\"22222225-2222-2222-2222-222222222222\",\"organization_id\":\"org-12345678\",\"author_id\":\"user1\",\"author_email\":\"john.doe@example.com\",\"report\":null,\"keyword\":{\"name\":\"example.com\",\"status\":\"active\",\"type\":\"domain\"},\"user\":null,\"updated_fields\":[\"status\"],\"action\":\"update\",\"event_date\":\"2026-10-22T09:00:00.000Z\",\"object_type\":\"keyword\",\"object_id\":\"44444444-4444-4444-4444-444444444444\"}",
     "sekoiaio": {
       "intake": {
-        "dialect": "CybelAngel Audit Logs",
-        "dialect_uuid": "d681c5ba-63bf-4fcf-8b54-cf2d31ee5b89"
+        "dialect": "CybelAngel",
+        "dialect_uuid": "518d90b4-7d70-4abe-9d98-fd50597c0f6f"
       }
     }
   },

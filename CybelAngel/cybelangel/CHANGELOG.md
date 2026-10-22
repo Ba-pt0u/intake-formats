@@ -11,4 +11,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Initial version of the format: logins, logouts and actions of the users on the incident reports, the keywords and the users
+- Initial version of the format:
+  - incident reports sent by CybelAngel, parsed as alerts
+  - audit logs of the platform: logins, logouts and actions of the users on the incident reports, the keywords and the users

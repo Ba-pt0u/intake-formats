@@ -1,0 +1,186 @@
+name: cybelangel
+ignored_values:
+  - ""
+pipeline:
+  - name: json_event
+    external:
+      name: json.parse-json
+      properties:
+        input_field: "{{original.message}}"
+        output_field: message
+
+  - name: parsed_date
+    external:
+      name: date.parse
+      properties:
+        input_field: "{{json_event.message.event_date or json_event.message.sent_at or json_event.message.created_at}}"
+        output_field: datetime
+
+  - name: set_common_fields
+
+  # incident reports
+  - name: set_report_fields
+    filter: "{{'event_id' not in json_event.message}}"
+
+  # audit logs
+  - name: set_audit_fields
+    filter: "{{'event_id' in json_event.message and 'object_type' in json_event.message}}"
+  - name: set_user_object_fields
+    filter: "{{'event_id' in json_event.message and 'object_type' in json_event.message and json_event.message.object_type == 'user'}}"
+  - name: set_keyword_object_fields
+    filter: "{{'event_id' in json_event.message and 'object_type' in json_event.message and json_event.message.object_type == 'keyword'}}"
+  - name: set_report_object_fields
+    filter: "{{'event_id' in json_event.message and 'object_type' in json_event.message and json_event.message.object_type == 'report'}}"
+  - name: set_authentication_fields
+    filter: "{{'event_id' in json_event.message and 'object_type' in json_event.message and json_event.message.action in ['login', 'logout', 'change_password']}}"
+
+stages:
+  set_common_fields:
+    actions:
+      - set:
+          "@timestamp": "{{parsed_date.datetime}}"
+          observer.vendor: "CybelAngel"
+          observer.product: "CybelAngel Platform"
+
+  set_report_fields:
+    actions:
+      - set:
+          event.kind: "alert"
+          event.dataset: "incident_reports"
+          event.type: ["info"]
+          event.action: "{{json_event.message.incident_type}}"
+          event.severity: "{{json_event.message.severity}}"
+          event.reason: "{{json_event.message.title}}"
+          event.url: "{{json_event.message.url}}"
+          host.name: "{{json_event.message.machine_name}}"
+          threat.software.name: "{{json_event.message.malware_name}}"
+          cybelangel.report.id: "{{json_event.message.id}}"
+          cybelangel.report.incident_id: "{{json_event.message.incident_id}}"
+          cybelangel.report.incident_type: "{{json_event.message.incident_type}}"
+          cybelangel.report.report_type: "{{json_event.message.report_type}}"
+          cybelangel.report.category: "{{json_event.message.category}}"
+          cybelangel.report.module: "{{json_event.message.module}}"
+          cybelangel.report.status: "{{json_event.message.status}}"
+          cybelangel.report.severity: "{{json_event.message.severity}}"
+          cybelangel.report.abstract: "{{json_event.message.abstract}}"
+          cybelangel.report.threat: "{{json_event.message.threat}}"
+          cybelangel.report.ip: "{{json_event.message.ip}}"
+          cybelangel.report.port: "{{json_event.message.port}}"
+          cybelangel.report.hostnames: "{{json_event.message.hostnames}}"
+          cybelangel.report.registrar_name: "{{json_event.message.registrar_name}}"
+          cybelangel.report.detected_at: "{{json_event.message.detected_at}}"
+          cybelangel.report.updated_at: "{{json_event.message.updated_at}}"
+          cybelangel.report.keywords: "{{(json_event.message.keywords or []) | map(attribute='name') | select | list}}"
+          cybelangel.report.workspaces: "{{(json_event.message.workspaces or []) | map(attribute='name') | select | list}}"
+          cybelangel.report.tags: "{{json_event.message.tags}}"
+
+      - set:
+          related.ip: ["{{json_event.message.ip}}"]
+        filter: "{{json_event.message.ip | is_ipaddress}}"
+
+      - set:
+          related.hosts: "{{json_event.message.hostnames}}"
+        filter: "{{(json_event.message.hostnames or []) | length > 0}}"
+
+      # exposed assets and vulnerabilities
+      - translate:
+        dictionary:
+          cve: ["vulnerability"]
+          vulnerability: ["vulnerability"]
+          vulnerable_technology: ["vulnerability"]
+          vulnerable_technology_to_kev: ["vulnerability"]
+          sensitive_open_ports: ["vulnerability"]
+          exposed_service: ["vulnerability"]
+          exposed_data_storage: ["vulnerability"]
+          unsecured_database: ["vulnerability"]
+          subdomain_takeover: ["vulnerability"]
+          belonging_dangling_subdomain: ["vulnerability"]
+          dangling_subdomain: ["vulnerability"]
+          tls_certificate_expired: ["vulnerability"]
+          tls_certificate_soon_expired: ["vulnerability"]
+          accessible_website_with_tls_certificate_expired: ["vulnerability"]
+        mapping:
+          json_event.message.incident_type: event.category
+        fallback: ["intrusion_detection"]
+
+  set_audit_fields:
+    actions:
+      - set:
+          event.kind: "event"
+          event.dataset: "audit_logs"
+          event.action: "{{json_event.message.action}}"
+          event.outcome: "success"
+          organization.id: "{{json_event.message.organization_id}}"
+          user.id: "{{json_event.message.author_id}}"
+          user.email: "{{json_event.message.author_email}}"
+          related.user: "{{[json_event.message.author_email, (json_event.message.user or {}).get('email')] | select | unique | list}}"
+          cybelangel.audit.event_id: "{{json_event.message.event_id}}"
+          cybelangel.audit.object.id: "{{json_event.message.object_id}}"
+          cybelangel.audit.object.type: "{{json_event.message.object_type}}"
+          cybelangel.audit.updated_fields: "{{json_event.message.updated_fields}}"
+
+      - translate:
+        dictionary:
+          create: ["creation"]
+          update: ["change"]
+          delete: ["deletion"]
+          view: ["access"]
+          export: ["access"]
+          share_externally: ["access"]
+        mapping:
+          json_event.message.action: event.type
+        fallback: ["info"]
+
+  set_user_object_fields:
+    actions:
+      - set:
+          event.category: ["iam"]
+          user.target.id: "{{json_event.message.object_id}}"
+          user.target.email: "{{(json_event.message.user or {}).get('email')}}"
+
+      - translate:
+        dictionary:
+          create: ["user", "creation"]
+          update: ["user", "change"]
+          delete: ["user", "deletion"]
+        mapping:
+          json_event.message.action: event.type
+        fallback: ["user", "info"]
+
+  set_keyword_object_fields:
+    actions:
+      - set:
+          event.category: ["configuration"]
+          cybelangel.keyword.name: "{{(json_event.message.keyword or {}).get('name')}}"
+          cybelangel.keyword.status: "{{(json_event.message.keyword or {}).get('status')}}"
+          cybelangel.keyword.type: "{{(json_event.message.keyword or {}).get('type')}}"
+
+  set_report_object_fields:
+    actions:
+      - set:
+          event.category: ["web"]
+          cybelangel.report.incident_id: "{{(json_event.message.report or {}).get('incident_id')}}"
+          cybelangel.report.incident_type: "{{(json_event.message.report or {}).get('incident_type')}}"
+          cybelangel.report.severity: "{{(json_event.message.report or {}).get('severity')}}"
+          cybelangel.report.status: "{{(json_event.message.report or {}).get('status')}}"
+
+      - set:
+          event.type: ["info"]
+        filter: "{{json_event.message.action not in ['view', 'export', 'share_externally']}}"
+
+  set_authentication_fields:
+    actions:
+      - set:
+          event.category: ["authentication"]
+          event.type: ["start"]
+        filter: "{{json_event.message.action == 'login'}}"
+
+      - set:
+          event.category: ["authentication"]
+          event.type: ["end"]
+        filter: "{{json_event.message.action == 'logout'}}"
+
+      - set:
+          event.category: ["iam"]
+          event.type: ["user", "change"]
+        filter: "{{json_event.message.action == 'change_password'}}"

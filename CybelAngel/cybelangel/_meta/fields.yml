@@ -1,3 +1,39 @@
+cybelangel.audit.event_id:
+  description: Unique identifier of the audit log event
+  name: cybelangel.audit.event_id
+  type: keyword
+
+cybelangel.audit.object.id:
+  description: Identifier of the object the action was performed on
+  name: cybelangel.audit.object.id
+  type: keyword
+
+cybelangel.audit.object.type:
+  description: Type of the object the action was performed on (report, keyword or
+    user)
+  name: cybelangel.audit.object.type
+  type: keyword
+
+cybelangel.audit.updated_fields:
+  description: Fields updated by an update action
+  name: cybelangel.audit.updated_fields
+  type: array
+
+cybelangel.keyword.name:
+  description: Name of the keyword the action was performed on
+  name: cybelangel.keyword.name
+  type: keyword
+
+cybelangel.keyword.status:
+  description: Status of the keyword the action was performed on
+  name: cybelangel.keyword.status
+  type: keyword
+
+cybelangel.keyword.type:
+  description: Type of the keyword the action was performed on
+  name: cybelangel.keyword.type
+  type: keyword
+
 cybelangel.report.abstract:
   description: Summary of the incident
   name: cybelangel.report.abstract
