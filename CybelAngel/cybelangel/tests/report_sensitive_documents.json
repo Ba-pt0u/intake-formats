@@ -1,0 +1,65 @@
+{
+  "input": {
+    "message": "{\"abstract\":\"Our tools detected 1 file exposed over http (port 8000) on the server 198.51.100.30.\\nThe exposed document is a statement of work related to \\\"Example Corp\\\".\",\"abuse_email\":\"\",\"analysis\":\"**Origin:**\\nBased on its metadata and content, the unsecured device seems to belong to a third-party supplier.\",\"asset_urls\":[],\"attachments\":[],\"board\":\"\",\"category\":\"fileserver\",\"city\":\"\",\"country_code\":\"CH\",\"created_at\":\"2026-09-25T13:09:15.383966\",\"detected_at\":\"2026-09-24T17:23:57+00:00\",\"domain_registered_at\":null,\"hostnames\":[\"files.example.com\"],\"id\":\"33333334-3333-3333-3333-333333333333\",\"incident_id\":\"EXAMPLE-0004\",\"incident_type\":\"sensitive_documents\",\"investigation_id\":\"66666666-6666-6666-6666-666666666666\",\"ip\":\"198.51.100.30\",\"keywords\":[{\"id\":\"44444444-4444-4444-4444-444444444444\",\"name\":\"Example Corp\"}],\"liveness\":{\"online\":true,\"last_checked_at\":\"2026-09-25T13:09:15.332018+00:00\"},\"location\":\"Switzerland\",\"mx_servers\":[],\"ns_servers\":[],\"origins\":[{\"type\":\"supplier\",\"value\":\"Example Supplier\"}],\"port\":8000,\"registrant_email\":\"\",\"registrar_name\":\"\",\"report_content\":\"### Sensitive documents\\n1 document detected on an open server.\",\"report_type\":\"incident_detection\",\"risks\":[{\"type\":\"clear_further_data_leak\",\"message\":\"If the collaboration with the source of the leak is still active, new sensitive documents may be exposed.\"}],\"samples\":[{\"type\":\"other\",\"sample\":\"<p>/EngagementDocs/Example_SOW.pdf</p>\"}],\"screenshots\":[],\"sender\":\"analyst@example.com\",\"sender_tenant_id\":\"cybelangel\",\"sent_at\":\"2026-09-25T13:21:30+00:00\",\"severity\":1,\"source\":\"HTTP\",\"status\":\"open\",\"stream\":\"77777777-7777-7777-7777-777777777777\",\"suggestions\":[{\"type\":\"other\",\"message\":\"<ul><li>Confirm the sensitivity of the detected information.</li></ul>\"}],\"tags\":[],\"threat\":null,\"title\":\"Sensitive documents over HTTP\",\"updated_at\":\"2026-09-25T13:21:30.347597\",\"url\":\"https://platform.example.com/reports/33333334-3333-3333-3333-333333333333\",\"usergroups\":[\"Default\"],\"volume\":{\"bins\":null,\"documents\":1,\"domain\":null,\"emails\":null,\"passwords\":null,\"ips\":null},\"whois\":\"\",\"malware_name\":null,\"malware_location\":null,\"machine_name\":null,\"user_session\":null,\"module\":\"data_breach_prevention\",\"workspaces\":[{\"id\":\"55555555-5555-5555-5555-555555555555\",\"name\":\"Default\"}]}",
+    "sekoiaio": {
+      "intake": {
+        "dialect": "CybelAngel",
+        "dialect_uuid": "518d90b4-7d70-4abe-9d98-fd50597c0f6f"
+      }
+    }
+  },
+  "expected": {
+    "message": "{\"abstract\":\"Our tools detected 1 file exposed over http (port 8000) on the server 198.51.100.30.\\nThe exposed document is a statement of work related to \\\"Example Corp\\\".\",\"abuse_email\":\"\",\"analysis\":\"**Origin:**\\nBased on its metadata and content, the unsecured device seems to belong to a third-party supplier.\",\"asset_urls\":[],\"attachments\":[],\"board\":\"\",\"category\":\"fileserver\",\"city\":\"\",\"country_code\":\"CH\",\"created_at\":\"2026-09-25T13:09:15.383966\",\"detected_at\":\"2026-09-24T17:23:57+00:00\",\"domain_registered_at\":null,\"hostnames\":[\"files.example.com\"],\"id\":\"33333334-3333-3333-3333-333333333333\",\"incident_id\":\"EXAMPLE-0004\",\"incident_type\":\"sensitive_documents\",\"investigation_id\":\"66666666-6666-6666-6666-666666666666\",\"ip\":\"198.51.100.30\",\"keywords\":[{\"id\":\"44444444-4444-4444-4444-444444444444\",\"name\":\"Example Corp\"}],\"liveness\":{\"online\":true,\"last_checked_at\":\"2026-09-25T13:09:15.332018+00:00\"},\"location\":\"Switzerland\",\"mx_servers\":[],\"ns_servers\":[],\"origins\":[{\"type\":\"supplier\",\"value\":\"Example Supplier\"}],\"port\":8000,\"registrant_email\":\"\",\"registrar_name\":\"\",\"report_content\":\"### Sensitive documents\\n1 document detected on an open server.\",\"report_type\":\"incident_detection\",\"risks\":[{\"type\":\"clear_further_data_leak\",\"message\":\"If the collaboration with the source of the leak is still active, new sensitive documents may be exposed.\"}],\"samples\":[{\"type\":\"other\",\"sample\":\"<p>/EngagementDocs/Example_SOW.pdf</p>\"}],\"screenshots\":[],\"sender\":\"analyst@example.com\",\"sender_tenant_id\":\"cybelangel\",\"sent_at\":\"2026-09-25T13:21:30+00:00\",\"severity\":1,\"source\":\"HTTP\",\"status\":\"open\",\"stream\":\"77777777-7777-7777-7777-777777777777\",\"suggestions\":[{\"type\":\"other\",\"message\":\"<ul><li>Confirm the sensitivity of the detected information.</li></ul>\"}],\"tags\":[],\"threat\":null,\"title\":\"Sensitive documents over HTTP\",\"updated_at\":\"2026-09-25T13:21:30.347597\",\"url\":\"https://platform.example.com/reports/33333334-3333-3333-3333-333333333333\",\"usergroups\":[\"Default\"],\"volume\":{\"bins\":null,\"documents\":1,\"domain\":null,\"emails\":null,\"passwords\":null,\"ips\":null},\"whois\":\"\",\"malware_name\":null,\"malware_location\":null,\"machine_name\":null,\"user_session\":null,\"module\":\"data_breach_prevention\",\"workspaces\":[{\"id\":\"55555555-5555-5555-5555-555555555555\",\"name\":\"Default\"}]}",
+    "event": {
+      "action": "sensitive_documents",
+      "category": [
+        "intrusion_detection"
+      ],
+      "dataset": "incident_reports",
+      "kind": "alert",
+      "module": "data_breach_prevention",
+      "provider": "fileserver",
+      "reason": "Sensitive documents over HTTP",
+      "severity": 1,
+      "start": "2026-09-24T17:23:57Z",
+      "type": [
+        "info"
+      ],
+      "url": "https://platform.example.com/reports/33333334-3333-3333-3333-333333333333"
+    },
+    "@timestamp": "2026-09-25T13:21:30Z",
+    "cybelangel": {
+      "report": {
+        "abstract": "Our tools detected 1 file exposed over http (port 8000) on the server 198.51.100.30.\nThe exposed document is a statement of work related to \"Example Corp\".",
+        "id": "33333334-3333-3333-3333-333333333333",
+        "incident_id": "EXAMPLE-0004",
+        "incident_type": "sensitive_documents",
+        "report_type": "incident_detection",
+        "status": "open",
+        "workspaces": [
+          "Default"
+        ]
+      }
+    },
+    "observer": {
+      "product": "CybelAngel Platform",
+      "vendor": "CybelAngel"
+    },
+    "related": {
+      "hosts": [
+        "files.example.com"
+      ],
+      "ip": [
+        "198.51.100.30"
+      ]
+    },
+    "server": {
+      "domain": "files.example.com",
+      "ip": "198.51.100.30",
+      "port": 8000
+    },
+    "tags": [
+      "Example Corp"
+    ]
+  }
+}

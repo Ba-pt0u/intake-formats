@@ -82,10 +82,7 @@ stages:
         filter: "{{json_event.message.ip | is_ipaddress}}"
 
       - set:
-          related.ip: ["{{json_event.message.ip}}"]
-        filter: "{{json_event.message.ip | is_ipaddress}}"
-
-      - set:
+          server.domain: "{{json_event.message.hostnames[0]}}"
           related.hosts: "{{json_event.message.hostnames}}"
         filter: "{{(json_event.message.hostnames or []) | length > 0}}"
 

@@ -1,6 +1,6 @@
 {
   "input": {
-    "message": "{\"id\":\"33333333-3333-3333-3333-333333333333\",\"incident_id\":\"EXAMPLE-0003\",\"url\":\"https://platform.example.com/reports/33333333-3333-3333-3333-333333333333\",\"created_at\":\"2026-10-22T07:00:00Z\",\"detected_at\":\"2026-10-22T06:30:00Z\",\"updated_at\":\"2026-10-22T07:00:00Z\",\"sent_at\":null,\"report_type\":\"incident_report\",\"status\":\"in_progress\",\"keywords\":[{\"id\":\"44444444-4444-4444-4444-444444444444\",\"name\":\"example.com\"}],\"workspaces\":[{\"id\":\"55555555-5555-5555-5555-555555555555\",\"name\":\"Default\"}],\"attachments\":[],\"screenshots\":[],\"tags\":[],\"usergroups\":[],\"title\":\"Lookalike domain example-login.com targeting example.com\",\"abstract\":\"The domain example-login.com imitates the login page of example.com.\",\"category\":\"dns\",\"incident_type\":\"malicious_website\",\"module\":\"domain_protection\",\"severity\":4,\"registrar_name\":\"Example Registrar\",\"hostnames\":[\"example-login.com\"],\"ip\":\"203.0.113.20\"}",
+    "message": "{\"id\":\"33333333-3333-3333-3333-333333333333\",\"incident_id\":\"EXAMPLE-0003\",\"url\":\"https://platform.example.com/reports/33333333-3333-3333-3333-333333333333\",\"created_at\":\"2026-10-22T07:00:00Z\",\"detected_at\":\"2026-10-22T06:30:00Z\",\"updated_at\":\"2026-10-22T07:00:00Z\",\"sent_at\":null,\"report_type\":\"incident_report\",\"status\":\"in_progress\",\"keywords\":[{\"id\":\"44444444-4444-4444-4444-444444444444\",\"name\":\"example.com\"}],\"workspaces\":[{\"id\":\"55555555-5555-5555-5555-555555555555\",\"name\":\"Default\"}],\"attachments\":[],\"screenshots\":[],\"tags\":[],\"usergroups\":[],\"title\":\"Lookalike domain lookalike.example.net targeting example.com\",\"abstract\":\"The domain lookalike.example.net imitates the login page of example.com.\",\"category\":\"dns\",\"incident_type\":\"malicious_website\",\"module\":\"domain_protection\",\"severity\":4,\"registrar_name\":\"Example Registrar\",\"hostnames\":[\"lookalike.example.net\"],\"ip\":\"203.0.113.20\"}",
     "sekoiaio": {
       "intake": {
         "dialect": "CybelAngel",
@@ -9,7 +9,7 @@
     }
   },
   "expected": {
-    "message": "{\"id\":\"33333333-3333-3333-3333-333333333333\",\"incident_id\":\"EXAMPLE-0003\",\"url\":\"https://platform.example.com/reports/33333333-3333-3333-3333-333333333333\",\"created_at\":\"2026-10-22T07:00:00Z\",\"detected_at\":\"2026-10-22T06:30:00Z\",\"updated_at\":\"2026-10-22T07:00:00Z\",\"sent_at\":null,\"report_type\":\"incident_report\",\"status\":\"in_progress\",\"keywords\":[{\"id\":\"44444444-4444-4444-4444-444444444444\",\"name\":\"example.com\"}],\"workspaces\":[{\"id\":\"55555555-5555-5555-5555-555555555555\",\"name\":\"Default\"}],\"attachments\":[],\"screenshots\":[],\"tags\":[],\"usergroups\":[],\"title\":\"Lookalike domain example-login.com targeting example.com\",\"abstract\":\"The domain example-login.com imitates the login page of example.com.\",\"category\":\"dns\",\"incident_type\":\"malicious_website\",\"module\":\"domain_protection\",\"severity\":4,\"registrar_name\":\"Example Registrar\",\"hostnames\":[\"example-login.com\"],\"ip\":\"203.0.113.20\"}",
+    "message": "{\"id\":\"33333333-3333-3333-3333-333333333333\",\"incident_id\":\"EXAMPLE-0003\",\"url\":\"https://platform.example.com/reports/33333333-3333-3333-3333-333333333333\",\"created_at\":\"2026-10-22T07:00:00Z\",\"detected_at\":\"2026-10-22T06:30:00Z\",\"updated_at\":\"2026-10-22T07:00:00Z\",\"sent_at\":null,\"report_type\":\"incident_report\",\"status\":\"in_progress\",\"keywords\":[{\"id\":\"44444444-4444-4444-4444-444444444444\",\"name\":\"example.com\"}],\"workspaces\":[{\"id\":\"55555555-5555-5555-5555-555555555555\",\"name\":\"Default\"}],\"attachments\":[],\"screenshots\":[],\"tags\":[],\"usergroups\":[],\"title\":\"Lookalike domain lookalike.example.net targeting example.com\",\"abstract\":\"The domain lookalike.example.net imitates the login page of example.com.\",\"category\":\"dns\",\"incident_type\":\"malicious_website\",\"module\":\"domain_protection\",\"severity\":4,\"registrar_name\":\"Example Registrar\",\"hostnames\":[\"lookalike.example.net\"],\"ip\":\"203.0.113.20\"}",
     "event": {
       "action": "malicious_website",
       "category": [
@@ -19,7 +19,7 @@
       "kind": "alert",
       "module": "domain_protection",
       "provider": "dns",
-      "reason": "Lookalike domain example-login.com targeting example.com",
+      "reason": "Lookalike domain lookalike.example.net targeting example.com",
       "severity": 4,
       "start": "2026-10-22T06:30:00Z",
       "type": [
@@ -30,7 +30,7 @@
     "@timestamp": "2026-10-22T07:00:00Z",
     "cybelangel": {
       "report": {
-        "abstract": "The domain example-login.com imitates the login page of example.com.",
+        "abstract": "The domain lookalike.example.net imitates the login page of example.com.",
         "id": "33333333-3333-3333-3333-333333333333",
         "incident_id": "EXAMPLE-0003",
         "incident_type": "malicious_website",
@@ -47,11 +47,15 @@
       "vendor": "CybelAngel"
     },
     "related": {
+      "hosts": [
+        "lookalike.example.net"
+      ],
       "ip": [
         "203.0.113.20"
       ]
     },
     "server": {
+      "domain": "lookalike.example.net",
       "ip": "203.0.113.20"
     },
     "tags": [

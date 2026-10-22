@@ -46,11 +46,15 @@
       "vendor": "CybelAngel"
     },
     "related": {
+      "hosts": [
+        "vpn.example.com"
+      ],
       "ip": [
         "198.51.100.10"
       ]
     },
     "server": {
+      "domain": "vpn.example.com",
       "ip": "198.51.100.10",
       "port": 22
     },
