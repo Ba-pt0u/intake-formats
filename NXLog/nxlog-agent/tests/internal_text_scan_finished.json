@@ -1,0 +1,43 @@
+{
+  "input": {
+    "message": "Module 'fim': FIM scan finished in 120.5 seconds. Scanned folders: 3000 Scanned files: 25000 Read file bytes: 10000000000",
+    "sekoiaio": {
+      "intake": {
+        "dialect": "NXLog Agent",
+        "dialect_uuid": "7d55e609-e87e-40ef-8a6a-8baaceecd3e0"
+      }
+    }
+  },
+  "expected": {
+    "message": "Module 'fim': FIM scan finished in 120.5 seconds. Scanned folders: 3000 Scanned files: 25000 Read file bytes: 10000000000",
+    "event": {
+      "action": "fim-scan-finished",
+      "category": [
+        "host"
+      ],
+      "dataset": "internal",
+      "duration": 120500000000,
+      "kind": "event",
+      "reason": "Module 'fim': FIM scan finished in 120.5 seconds. Scanned folders: 3000 Scanned files: 25000 Read file bytes: 10000000000",
+      "type": [
+        "end"
+      ]
+    },
+    "nxlog": {
+      "fim": {
+        "scan": {
+          "bytes": 10000000000,
+          "files": 25000,
+          "folders": 3000
+        }
+      },
+      "module": {
+        "name": "fim"
+      }
+    },
+    "observer": {
+      "product": "NXLog Agent",
+      "vendor": "NXLog"
+    }
+  }
+}

@@ -1,0 +1,164 @@
+name: nxlog-agent
+ignored_values:
+  - ""
+pipeline:
+  - name: json_event
+    filter: "{{original.message.strip().startswith('{')}}"
+    external:
+      name: json.parse-json
+      properties:
+        input_field: "{{original.message}}"
+        output_field: message
+
+  - name: parse_event_time
+    filter: "{{original.message.strip().startswith('{') and (json_event.message.EventTime or '') != ''}}"
+    external:
+      name: date.parse
+      properties:
+        input_field: "{{json_event.message.EventTime}}"
+        output_field: datetime
+
+  # internal logs of the agent are either sent as plain text or as JSON (im_internal module)
+  - name: internal_message
+    filter: "{{not original.message.strip().startswith('{') or json_event.message.SourceModuleType != 'im_fim'}}"
+    external:
+      name: grok.match
+      properties:
+        raise_errors: false
+        input_field: "{{json_event.message.Message if original.message.strip().startswith('{') else original.message}}"
+        output_field: message
+        pattern: "%{SCAN_STARTED}|%{SCAN_FINISHED}|%{DIRECTORY_ERROR}|%{MODULE_MESSAGE}|%{OTHER}"
+        custom_patterns:
+          SCAN_STARTED: "Module '%{DATA:module}': FIM scan started"
+          SCAN_FINISHED: "Module '%{DATA:module}': FIM scan finished in %{NUMBER:scan_duration} seconds\\. Scanned folders: %{INT:scan_folders} Scanned files: %{INT:scan_files} Read file bytes: %{INT:scan_bytes}"
+          DIRECTORY_ERROR: "failed to open directory: %{DATA:directory}: %{GREEDYDATA:error}"
+          MODULE_MESSAGE: "Module '%{DATA:module}': %{GREEDYDATA:reason}"
+          OTHER: "%{GREEDYDATA:reason}"
+
+  - name: set_common_fields
+  - name: set_fim_fields
+    filter: "{{original.message.strip().startswith('{') and json_event.message.SourceModuleType == 'im_fim'}}"
+  - name: set_fim_hashes
+    filter: "{{original.message.strip().startswith('{') and json_event.message.SourceModuleType == 'im_fim' and (json_event.message.Digest or '') != ''}}"
+  - name: set_internal_fields
+    filter: "{{not original.message.strip().startswith('{') or json_event.message.SourceModuleType != 'im_fim'}}"
+
+stages:
+  set_common_fields:
+    actions:
+      - set:
+          event.kind: "event"
+          observer.vendor: "NXLog"
+          observer.product: "NXLog Agent"
+
+      - set:
+          "@timestamp": "{{parse_event_time.datetime}}"
+          host.name: "{{json_event.message.Hostname}}"
+          process.pid: "{{json_event.message.ProcessID}}"
+          log.level: "{{json_event.message.Severity | lower if json_event.message.Severity else ''}}"
+          event.severity: "{{json_event.message.SeverityValue}}"
+          log.syslog.facility.code: "{{json_event.message.SyslogFacilityValue}}"
+          log.syslog.facility.name: "{{json_event.message.SyslogFacility}}"
+          log.syslog.severity.code: "{{json_event.message.SyslogSeverityValue}}"
+          log.syslog.severity.name: "{{json_event.message.SyslogSeverity}}"
+          nxlog.source_module.name: "{{json_event.message.SourceModuleName}}"
+          nxlog.source_module.type: "{{json_event.message.SourceModuleType}}"
+        filter: "{{original.message.strip().startswith('{')}}"
+
+  set_fim_fields:
+    actions:
+      - set:
+          event.dataset: "fim"
+          event.category: ["file"]
+          event.action: "{{json_event.message.EventType | lower}}"
+          file.path: "{{json_event.message.FileName}}"
+          file.size: "{{json_event.message.FileSize}}"
+          file.mtime: "{{json_event.message.ModificationTime}}"
+          nxlog.fim.event_type: "{{json_event.message.EventType}}"
+          nxlog.fim.object: "{{json_event.message.Object}}"
+          nxlog.fim.previous.path: "{{json_event.message.PrevFileName}}"
+          nxlog.fim.previous.size: "{{json_event.message.PrevFileSize}}"
+          nxlog.fim.previous.mtime: "{{json_event.message.PrevModificationTime}}"
+
+      - set:
+          file.name: "{{json_event.message.FileName.replace('\\\\', '/').rsplit('/', 1)[-1]}}"
+          file.directory: "{{json_event.message.FileName[:json_event.message.FileName.replace('\\\\', '/').rfind('/')]}}"
+        filter: "{{json_event.message.FileName and json_event.message.FileName.replace('\\\\', '/').rfind('/') > 0}}"
+
+      - translate:
+        dictionary:
+          FILE: file
+          DIRECTORY: dir
+        mapping:
+          json_event.message.Object: file.type
+
+      - translate:
+        dictionary:
+          NEW: ["creation"]
+          CHANGE: ["change"]
+          RENAME: ["change"]
+          DELETE: ["deletion"]
+        mapping:
+          json_event.message.EventType: event.type
+        fallback: ["info"]
+
+  set_fim_hashes:
+    actions:
+      - set:
+          nxlog.fim.digest_name: "{{json_event.message.DigestName}}"
+          nxlog.fim.previous.hash: "{{json_event.message.PrevDigest}}"
+          related.hash: "{{[json_event.message.Digest, json_event.message.PrevDigest] | select | unique | list}}"
+
+      - set:
+          file.hash.md5: "{{json_event.message.Digest}}"
+        filter: "{{json_event.message.DigestName | lower == 'md5'}}"
+
+      - set:
+          file.hash.sha1: "{{json_event.message.Digest}}"
+        filter: "{{json_event.message.DigestName | lower == 'sha1'}}"
+
+      - set:
+          file.hash.sha256: "{{json_event.message.Digest}}"
+        filter: "{{json_event.message.DigestName | lower == 'sha256'}}"
+
+      - set:
+          file.hash.sha512: "{{json_event.message.Digest}}"
+        filter: "{{json_event.message.DigestName | lower == 'sha512'}}"
+
+  set_internal_fields:
+    actions:
+      - set:
+          event.dataset: "internal"
+          event.category: ["host"]
+          event.type: ["info"]
+          event.reason: "{{json_event.message.Message if original.message.strip().startswith('{') else original.message.strip()}}"
+          nxlog.module.name: "{{internal_message.message.module}}"
+
+      - set:
+          nxlog.module.name: "{{json_event.message.ModuleName}}"
+          nxlog.module.type: "{{json_event.message.ModuleType}}"
+        filter: "{{original.message.strip().startswith('{')}}"
+
+      - set:
+          event.action: "fim-scan-started"
+          event.type: ["start"]
+        filter: "{{'FIM scan started' in (final.event.reason or '')}}"
+
+      - set:
+          event.action: "fim-scan-finished"
+          event.type: ["end"]
+          event.duration: "{{(internal_message.message.scan_duration | float * 1000000000) | int}}"
+          nxlog.fim.scan.folders: "{{internal_message.message.scan_folders | int}}"
+          nxlog.fim.scan.files: "{{internal_message.message.scan_files | int}}"
+          nxlog.fim.scan.bytes: "{{internal_message.message.scan_bytes | int}}"
+        filter: "{{(internal_message.message.scan_duration or '') != ''}}"
+
+      - set:
+          event.action: "directory-access-failed"
+          event.category: ["file"]
+          event.type: ["access"]
+          event.outcome: "failure"
+          file.path: "{{internal_message.message.directory.rstrip('\\/')}}"
+          file.type: "dir"
+          error.message: "{{internal_message.message.error | trim}}"
+        filter: "{{(internal_message.message.directory or '') != ''}}"

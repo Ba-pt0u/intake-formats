@@ -1,0 +1,71 @@
+nxlog.fim.digest_name:
+  description: Name of the digest algorithm used by the File Integrity Monitoring
+    module (e.g. sha256)
+  name: nxlog.fim.digest_name
+  type: keyword
+
+nxlog.fim.event_type:
+  description: Type of the File Integrity Monitoring event (NEW, CHANGE, RENAME, DELETE)
+  name: nxlog.fim.event_type
+  type: keyword
+
+nxlog.fim.object:
+  description: Type of the monitored object (FILE or DIRECTORY)
+  name: nxlog.fim.object
+  type: keyword
+
+nxlog.fim.previous.hash:
+  description: Digest of the file before the change
+  name: nxlog.fim.previous.hash
+  type: keyword
+
+nxlog.fim.previous.mtime:
+  description: Last modification time of the file before the change
+  name: nxlog.fim.previous.mtime
+  type: date
+
+nxlog.fim.previous.path:
+  description: Full path of the file before the change (previous name for a rename)
+  name: nxlog.fim.previous.path
+  type: keyword
+
+nxlog.fim.previous.size:
+  description: Size of the file in bytes before the change
+  name: nxlog.fim.previous.size
+  type: long
+
+nxlog.fim.scan.bytes:
+  description: Number of bytes read during the File Integrity Monitoring scan
+  name: nxlog.fim.scan.bytes
+  type: long
+
+nxlog.fim.scan.files:
+  description: Number of files scanned during the File Integrity Monitoring scan
+  name: nxlog.fim.scan.files
+  type: long
+
+nxlog.fim.scan.folders:
+  description: Number of folders scanned during the File Integrity Monitoring scan
+  name: nxlog.fim.scan.folders
+  type: long
+
+nxlog.module.name:
+  description: Name of the NXLog module that generated the internal log
+  name: nxlog.module.name
+  type: keyword
+
+nxlog.module.type:
+  description: Type of the NXLog module that generated the internal log (e.g. im_fim)
+  name: nxlog.module.type
+  type: keyword
+
+nxlog.source_module.name:
+  description: Name of the NXLog input module instance that collected the event
+  name: nxlog.source_module.name
+  type: keyword
+
+nxlog.source_module.type:
+  description: Type of the NXLog input module that collected the event (e.g. im_fim,
+    im_internal)
+  name: nxlog.source_module.type
+  type: keyword

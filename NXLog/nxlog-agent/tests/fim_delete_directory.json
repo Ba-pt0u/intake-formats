@@ -1,0 +1,54 @@
+{
+  "input": {
+    "message": "{\"EventTime\":\"2026-10-22T11:24:52.126133+00:00\",\"EventType\":\"DELETE\",\"Object\":\"DIRECTORY\",\"PrevFileName\":\"c:\\\\temp\\\\example\",\"PrevModificationTime\":\"2026-10-22T11:16:39.040245+00:00\",\"FileName\":\"c:\\\\temp\\\\example\",\"Severity\":\"WARNING\",\"SeverityValue\":3,\"EventReceivedTime\":\"2026-10-22T11:24:52.126133+00:00\",\"SourceModuleName\":\"fim\",\"SourceModuleType\":\"im_fim\"}",
+    "sekoiaio": {
+      "intake": {
+        "dialect": "NXLog Agent",
+        "dialect_uuid": "7d55e609-e87e-40ef-8a6a-8baaceecd3e0"
+      }
+    }
+  },
+  "expected": {
+    "message": "{\"EventTime\":\"2026-10-22T11:24:52.126133+00:00\",\"EventType\":\"DELETE\",\"Object\":\"DIRECTORY\",\"PrevFileName\":\"c:\\\\temp\\\\example\",\"PrevModificationTime\":\"2026-10-22T11:16:39.040245+00:00\",\"FileName\":\"c:\\\\temp\\\\example\",\"Severity\":\"WARNING\",\"SeverityValue\":3,\"EventReceivedTime\":\"2026-10-22T11:24:52.126133+00:00\",\"SourceModuleName\":\"fim\",\"SourceModuleType\":\"im_fim\"}",
+    "event": {
+      "action": "delete",
+      "category": [
+        "file"
+      ],
+      "dataset": "fim",
+      "kind": "event",
+      "severity": 3,
+      "type": [
+        "deletion"
+      ]
+    },
+    "@timestamp": "2026-10-22T11:24:52.126133Z",
+    "file": {
+      "directory": "c:\\temp",
+      "name": "example",
+      "path": "c:\\temp\\example",
+      "type": "dir"
+    },
+    "log": {
+      "level": "warning"
+    },
+    "nxlog": {
+      "fim": {
+        "event_type": "DELETE",
+        "object": "DIRECTORY",
+        "previous": {
+          "mtime": "2026-10-22T11:16:39.040245+00:00",
+          "path": "c:\\temp\\example"
+        }
+      },
+      "source_module": {
+        "name": "fim",
+        "type": "im_fim"
+      }
+    },
+    "observer": {
+      "product": "NXLog Agent",
+      "vendor": "NXLog"
+    }
+  }
+}

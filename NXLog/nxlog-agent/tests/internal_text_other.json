@@ -1,0 +1,29 @@
+{
+  "input": {
+    "message": "nxlog started",
+    "sekoiaio": {
+      "intake": {
+        "dialect": "NXLog Agent",
+        "dialect_uuid": "7d55e609-e87e-40ef-8a6a-8baaceecd3e0"
+      }
+    }
+  },
+  "expected": {
+    "message": "nxlog started",
+    "event": {
+      "category": [
+        "host"
+      ],
+      "dataset": "internal",
+      "kind": "event",
+      "reason": "nxlog started",
+      "type": [
+        "info"
+      ]
+    },
+    "observer": {
+      "product": "NXLog Agent",
+      "vendor": "NXLog"
+    }
+  }
+}

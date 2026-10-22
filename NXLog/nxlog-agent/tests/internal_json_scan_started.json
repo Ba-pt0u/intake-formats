@@ -1,0 +1,61 @@
+{
+  "input": {
+    "message": "{\"EventTime\":\"2026-10-22T11:20:00.000000+00:00\",\"Hostname\":\"host.example.com\",\"Severity\":\"INFO\",\"SeverityValue\":2,\"SyslogFacilityValue\":1,\"SyslogFacility\":\"USER\",\"SyslogSeverityValue\":6,\"SyslogSeverity\":\"INFO\",\"ProcessID\":4242,\"Message\":\"Module 'fim': FIM scan started\",\"ModuleName\":\"fim\",\"ModuleType\":\"im_fim\",\"EventReceivedTime\":\"2026-10-22T11:20:00.000000+00:00\",\"SourceModuleName\":\"internal\",\"SourceModuleType\":\"im_internal\"}",
+    "sekoiaio": {
+      "intake": {
+        "dialect": "NXLog Agent",
+        "dialect_uuid": "7d55e609-e87e-40ef-8a6a-8baaceecd3e0"
+      }
+    }
+  },
+  "expected": {
+    "message": "{\"EventTime\":\"2026-10-22T11:20:00.000000+00:00\",\"Hostname\":\"host.example.com\",\"Severity\":\"INFO\",\"SeverityValue\":2,\"SyslogFacilityValue\":1,\"SyslogFacility\":\"USER\",\"SyslogSeverityValue\":6,\"SyslogSeverity\":\"INFO\",\"ProcessID\":4242,\"Message\":\"Module 'fim': FIM scan started\",\"ModuleName\":\"fim\",\"ModuleType\":\"im_fim\",\"EventReceivedTime\":\"2026-10-22T11:20:00.000000+00:00\",\"SourceModuleName\":\"internal\",\"SourceModuleType\":\"im_internal\"}",
+    "event": {
+      "action": "fim-scan-started",
+      "category": [
+        "host"
+      ],
+      "dataset": "internal",
+      "kind": "event",
+      "reason": "Module 'fim': FIM scan started",
+      "severity": 2,
+      "type": [
+        "start"
+      ]
+    },
+    "@timestamp": "2026-10-22T11:20:00Z",
+    "host": {
+      "name": "host.example.com"
+    },
+    "log": {
+      "level": "info",
+      "syslog": {
+        "facility": {
+          "code": 1,
+          "name": "USER"
+        },
+        "severity": {
+          "code": 6,
+          "name": "INFO"
+        }
+      }
+    },
+    "nxlog": {
+      "module": {
+        "name": "fim",
+        "type": "im_fim"
+      },
+      "source_module": {
+        "name": "internal",
+        "type": "im_internal"
+      }
+    },
+    "observer": {
+      "product": "NXLog Agent",
+      "vendor": "NXLog"
+    },
+    "process": {
+      "pid": 4242
+    }
+  }
+}

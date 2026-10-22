@@ -1,0 +1,40 @@
+{
+  "input": {
+    "message": "failed to open directory: c:\\windows\\temp\\example\\: Access is denied.  ",
+    "sekoiaio": {
+      "intake": {
+        "dialect": "NXLog Agent",
+        "dialect_uuid": "7d55e609-e87e-40ef-8a6a-8baaceecd3e0"
+      }
+    }
+  },
+  "expected": {
+    "message": "failed to open directory: c:\\windows\\temp\\example\\: Access is denied.  ",
+    "event": {
+      "action": "directory-access-failed",
+      "category": [
+        "file"
+      ],
+      "dataset": "internal",
+      "kind": "event",
+      "outcome": "failure",
+      "reason": "failed to open directory: c:\\windows\\temp\\example\\: Access is denied.",
+      "type": [
+        "access"
+      ]
+    },
+    "error": {
+      "message": "Access is denied."
+    },
+    "file": {
+      "directory": "c:\\windows\\temp",
+      "name": "example",
+      "path": "c:\\windows\\temp\\example",
+      "type": "dir"
+    },
+    "observer": {
+      "product": "NXLog Agent",
+      "vendor": "NXLog"
+    }
+  }
+}

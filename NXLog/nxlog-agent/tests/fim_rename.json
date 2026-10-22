@@ -1,0 +1,67 @@
+{
+  "input": {
+    "message": "{\"EventTime\":\"2026-10-22T11:25:46.600970+00:00\",\"EventType\":\"RENAME\",\"Object\":\"FILE\",\"PrevFileName\":\"c:\\\\windows\\\\system32\\\\driverstore\\\\filerepository\\\\example.inf_amd64_0000000000000000\\\\example.dll\",\"PrevModificationTime\":\"2026-07-30T07:21:43.378064+00:00\",\"FileName\":\"c:\\\\windows\\\\system32\\\\example.dll\",\"ModificationTime\":\"2026-07-30T07:21:43.378064+00:00\",\"PrevFileSize\":30136,\"FileSize\":30136,\"DigestName\":\"sha256\",\"Digest\":\"c147efcfc2d7ea666a9e4f5187b115c90903f0fc896a56df9a6ef5d8f3fc9f31\",\"PrevDigest\":\"c147efcfc2d7ea666a9e4f5187b115c90903f0fc896a56df9a6ef5d8f3fc9f31\",\"Severity\":\"WARNING\",\"SeverityValue\":3,\"EventReceivedTime\":\"2026-10-22T11:25:46.600970+00:00\",\"SourceModuleName\":\"fim\",\"SourceModuleType\":\"im_fim\"}",
+    "sekoiaio": {
+      "intake": {
+        "dialect": "NXLog Agent",
+        "dialect_uuid": "7d55e609-e87e-40ef-8a6a-8baaceecd3e0"
+      }
+    }
+  },
+  "expected": {
+    "message": "{\"EventTime\":\"2026-10-22T11:25:46.600970+00:00\",\"EventType\":\"RENAME\",\"Object\":\"FILE\",\"PrevFileName\":\"c:\\\\windows\\\\system32\\\\driverstore\\\\filerepository\\\\example.inf_amd64_0000000000000000\\\\example.dll\",\"PrevModificationTime\":\"2026-07-30T07:21:43.378064+00:00\",\"FileName\":\"c:\\\\windows\\\\system32\\\\example.dll\",\"ModificationTime\":\"2026-07-30T07:21:43.378064+00:00\",\"PrevFileSize\":30136,\"FileSize\":30136,\"DigestName\":\"sha256\",\"Digest\":\"c147efcfc2d7ea666a9e4f5187b115c90903f0fc896a56df9a6ef5d8f3fc9f31\",\"PrevDigest\":\"c147efcfc2d7ea666a9e4f5187b115c90903f0fc896a56df9a6ef5d8f3fc9f31\",\"Severity\":\"WARNING\",\"SeverityValue\":3,\"EventReceivedTime\":\"2026-10-22T11:25:46.600970+00:00\",\"SourceModuleName\":\"fim\",\"SourceModuleType\":\"im_fim\"}",
+    "event": {
+      "action": "rename",
+      "category": [
+        "file"
+      ],
+      "dataset": "fim",
+      "kind": "event",
+      "severity": 3,
+      "type": [
+        "change"
+      ]
+    },
+    "@timestamp": "2026-10-22T11:25:46.600970Z",
+    "file": {
+      "directory": "c:\\windows\\system32",
+      "hash": {
+        "sha256": "c147efcfc2d7ea666a9e4f5187b115c90903f0fc896a56df9a6ef5d8f3fc9f31"
+      },
+      "mtime": "2026-07-30T07:21:43.378064Z",
+      "name": "example.dll",
+      "path": "c:\\windows\\system32\\example.dll",
+      "size": 30136,
+      "type": "file"
+    },
+    "log": {
+      "level": "warning"
+    },
+    "nxlog": {
+      "fim": {
+        "digest_name": "sha256",
+        "event_type": "RENAME",
+        "object": "FILE",
+        "previous": {
+          "hash": "c147efcfc2d7ea666a9e4f5187b115c90903f0fc896a56df9a6ef5d8f3fc9f31",
+          "mtime": "2026-07-30T07:21:43.378064+00:00",
+          "path": "c:\\windows\\system32\\driverstore\\filerepository\\example.inf_amd64_0000000000000000\\example.dll",
+          "size": 30136
+        }
+      },
+      "source_module": {
+        "name": "fim",
+        "type": "im_fim"
+      }
+    },
+    "observer": {
+      "product": "NXLog Agent",
+      "vendor": "NXLog"
+    },
+    "related": {
+      "hash": [
+        "c147efcfc2d7ea666a9e4f5187b115c90903f0fc896a56df9a6ef5d8f3fc9f31"
+      ]
+    }
+  }
+}

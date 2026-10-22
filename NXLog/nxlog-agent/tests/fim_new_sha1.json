@@ -1,0 +1,61 @@
+{
+  "input": {
+    "message": "{\"EventTime\":\"2026-10-22T11:24:52.126133+00:00\",\"EventType\":\"NEW\",\"Object\":\"FILE\",\"FileName\":\"/etc/example.conf\",\"ModificationTime\":\"2026-10-22T11:24:42.701315+00:00\",\"FileSize\":512,\"DigestName\":\"sha1\",\"Digest\":\"d5b0a58bc47161b1b8a831084b366f757c4f0b11\",\"Severity\":\"WARNING\",\"SeverityValue\":3,\"EventReceivedTime\":\"2026-10-22T11:24:52.126133+00:00\",\"SourceModuleName\":\"fim\",\"SourceModuleType\":\"im_fim\"}",
+    "sekoiaio": {
+      "intake": {
+        "dialect": "NXLog Agent",
+        "dialect_uuid": "7d55e609-e87e-40ef-8a6a-8baaceecd3e0"
+      }
+    }
+  },
+  "expected": {
+    "message": "{\"EventTime\":\"2026-10-22T11:24:52.126133+00:00\",\"EventType\":\"NEW\",\"Object\":\"FILE\",\"FileName\":\"/etc/example.conf\",\"ModificationTime\":\"2026-10-22T11:24:42.701315+00:00\",\"FileSize\":512,\"DigestName\":\"sha1\",\"Digest\":\"d5b0a58bc47161b1b8a831084b366f757c4f0b11\",\"Severity\":\"WARNING\",\"SeverityValue\":3,\"EventReceivedTime\":\"2026-10-22T11:24:52.126133+00:00\",\"SourceModuleName\":\"fim\",\"SourceModuleType\":\"im_fim\"}",
+    "event": {
+      "action": "new",
+      "category": [
+        "file"
+      ],
+      "dataset": "fim",
+      "kind": "event",
+      "severity": 3,
+      "type": [
+        "creation"
+      ]
+    },
+    "@timestamp": "2026-10-22T11:24:52.126133Z",
+    "file": {
+      "directory": "/etc",
+      "hash": {
+        "sha1": "d5b0a58bc47161b1b8a831084b366f757c4f0b11"
+      },
+      "mtime": "2026-10-22T11:24:42.701315Z",
+      "name": "example.conf",
+      "path": "/etc/example.conf",
+      "size": 512,
+      "type": "file"
+    },
+    "log": {
+      "level": "warning"
+    },
+    "nxlog": {
+      "fim": {
+        "digest_name": "sha1",
+        "event_type": "NEW",
+        "object": "FILE"
+      },
+      "source_module": {
+        "name": "fim",
+        "type": "im_fim"
+      }
+    },
+    "observer": {
+      "product": "NXLog Agent",
+      "vendor": "NXLog"
+    },
+    "related": {
+      "hash": [
+        "d5b0a58bc47161b1b8a831084b366f757c4f0b11"
+      ]
+    }
+  }
+}

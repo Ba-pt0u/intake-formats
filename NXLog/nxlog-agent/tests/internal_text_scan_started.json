@@ -1,0 +1,35 @@
+{
+  "input": {
+    "message": "Module 'fim': FIM scan started",
+    "sekoiaio": {
+      "intake": {
+        "dialect": "NXLog Agent",
+        "dialect_uuid": "7d55e609-e87e-40ef-8a6a-8baaceecd3e0"
+      }
+    }
+  },
+  "expected": {
+    "message": "Module 'fim': FIM scan started",
+    "event": {
+      "action": "fim-scan-started",
+      "category": [
+        "host"
+      ],
+      "dataset": "internal",
+      "kind": "event",
+      "reason": "Module 'fim': FIM scan started",
+      "type": [
+        "start"
+      ]
+    },
+    "nxlog": {
+      "module": {
+        "name": "fim"
+      }
+    },
+    "observer": {
+      "product": "NXLog Agent",
+      "vendor": "NXLog"
+    }
+  }
+}

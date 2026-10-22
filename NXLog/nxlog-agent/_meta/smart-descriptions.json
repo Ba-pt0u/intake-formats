@@ -1,0 +1,138 @@
+[
+  {
+    "value": "FIM: {file.path} created",
+    "conditions": [
+      {
+        "field": "file.path"
+      },
+      {
+        "field": "event.dataset",
+        "value": "fim"
+      },
+      {
+        "field": "event.action",
+        "value": "new"
+      }
+    ]
+  },
+  {
+    "value": "FIM: {file.path} modified",
+    "conditions": [
+      {
+        "field": "file.path"
+      },
+      {
+        "field": "event.dataset",
+        "value": "fim"
+      },
+      {
+        "field": "event.action",
+        "value": "change"
+      }
+    ]
+  },
+  {
+    "value": "FIM: {nxlog.fim.previous.path} renamed to {file.path}",
+    "conditions": [
+      {
+        "field": "file.path"
+      },
+      {
+        "field": "nxlog.fim.previous.path"
+      },
+      {
+        "field": "event.dataset",
+        "value": "fim"
+      },
+      {
+        "field": "event.action",
+        "value": "rename"
+      }
+    ]
+  },
+  {
+    "value": "FIM: {file.path} deleted",
+    "conditions": [
+      {
+        "field": "file.path"
+      },
+      {
+        "field": "event.dataset",
+        "value": "fim"
+      },
+      {
+        "field": "event.action",
+        "value": "delete"
+      }
+    ]
+  },
+  {
+    "value": "Module {nxlog.module.name}: FIM scan started",
+    "conditions": [
+      {
+        "field": "nxlog.module.name"
+      },
+      {
+        "field": "event.dataset",
+        "value": "internal"
+      },
+      {
+        "field": "event.action",
+        "value": "fim-scan-started"
+      }
+    ]
+  },
+  {
+    "value": "Module {nxlog.module.name}: FIM scan finished ({nxlog.fim.scan.files} files and {nxlog.fim.scan.folders} folders scanned)",
+    "conditions": [
+      {
+        "field": "nxlog.module.name"
+      },
+      {
+        "field": "nxlog.fim.scan.files"
+      },
+      {
+        "field": "nxlog.fim.scan.folders"
+      },
+      {
+        "field": "event.dataset",
+        "value": "internal"
+      },
+      {
+        "field": "event.action",
+        "value": "fim-scan-finished"
+      }
+    ]
+  },
+  {
+    "value": "NXLog failed to open directory {file.path}: {error.message}",
+    "conditions": [
+      {
+        "field": "file.path"
+      },
+      {
+        "field": "error.message"
+      },
+      {
+        "field": "event.dataset",
+        "value": "internal"
+      },
+      {
+        "field": "event.action",
+        "value": "directory-access-failed"
+      }
+    ]
+  },
+  {
+    "value": "NXLog internal log: {event.reason}",
+    "conditions": [
+      {
+        "field": "event.reason"
+      },
+      {
+        "field": "event.dataset",
+        "value": "internal"
+      }
+    ]
+  }
+]
